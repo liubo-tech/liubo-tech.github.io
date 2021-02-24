@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ES7学习笔记（十）聚合查询 | 牛初九博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="Java 技术 互联网 Spring Redis Mysql ">
+    <meta name="keywords" content="Java 技术 互联网 Spring SpringBoot SpringCloud Elastic Search MySQL MyCAT 分布式 集群">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.16ffb530.js" as="script"><link rel="preload" href="/assets/js/2.2805d820.js" as="script"><link rel="preload" href="/assets/js/24.d89bf6ba.js" as="script"><link rel="prefetch" href="/assets/js/10.7af0fa3b.js"><link rel="prefetch" href="/assets/js/11.bf2b4ef3.js"><link rel="prefetch" href="/assets/js/12.ffa316c1.js"><link rel="prefetch" href="/assets/js/13.7bf9e28b.js"><link rel="prefetch" href="/assets/js/14.fe8172bf.js"><link rel="prefetch" href="/assets/js/15.12492866.js"><link rel="prefetch" href="/assets/js/16.1e0b9828.js"><link rel="prefetch" href="/assets/js/17.5274e857.js"><link rel="prefetch" href="/assets/js/18.14c495e2.js"><link rel="prefetch" href="/assets/js/19.0065f7d5.js"><link rel="prefetch" href="/assets/js/20.15195b8f.js"><link rel="prefetch" href="/assets/js/21.a49d2486.js"><link rel="prefetch" href="/assets/js/22.7625f3ea.js"><link rel="prefetch" href="/assets/js/23.6829be75.js"><link rel="prefetch" href="/assets/js/25.f9c8e982.js"><link rel="prefetch" href="/assets/js/26.df00cb25.js"><link rel="prefetch" href="/assets/js/27.c2c39573.js"><link rel="prefetch" href="/assets/js/28.9d6955a7.js"><link rel="prefetch" href="/assets/js/29.793a5925.js"><link rel="prefetch" href="/assets/js/3.99170183.js"><link rel="prefetch" href="/assets/js/30.1d4eb018.js"><link rel="prefetch" href="/assets/js/31.c3635b83.js"><link rel="prefetch" href="/assets/js/32.39f76767.js"><link rel="prefetch" href="/assets/js/33.9623bd00.js"><link rel="prefetch" href="/assets/js/34.685b37ce.js"><link rel="prefetch" href="/assets/js/35.b6d262de.js"><link rel="prefetch" href="/assets/js/36.706cce0c.js"><link rel="prefetch" href="/assets/js/37.4b559cf9.js"><link rel="prefetch" href="/assets/js/38.8440f0a1.js"><link rel="prefetch" href="/assets/js/39.89829fe9.js"><link rel="prefetch" href="/assets/js/4.44e35b71.js"><link rel="prefetch" href="/assets/js/40.1eae592a.js"><link rel="prefetch" href="/assets/js/41.307e59e5.js"><link rel="prefetch" href="/assets/js/42.9c9598a9.js"><link rel="prefetch" href="/assets/js/43.6de9381c.js"><link rel="prefetch" href="/assets/js/44.0bda172b.js"><link rel="prefetch" href="/assets/js/45.7bd4678e.js"><link rel="prefetch" href="/assets/js/46.9601296c.js"><link rel="prefetch" href="/assets/js/47.8279d007.js"><link rel="prefetch" href="/assets/js/48.e8ae43c5.js"><link rel="prefetch" href="/assets/js/49.088eb890.js"><link rel="prefetch" href="/assets/js/5.7b7d1525.js"><link rel="prefetch" href="/assets/js/50.a104d084.js"><link rel="prefetch" href="/assets/js/51.0c101ee6.js"><link rel="prefetch" href="/assets/js/52.4269f250.js"><link rel="prefetch" href="/assets/js/53.1c55a938.js"><link rel="prefetch" href="/assets/js/54.dab6fc62.js"><link rel="prefetch" href="/assets/js/55.18a1bf4c.js"><link rel="prefetch" href="/assets/js/56.b2c0ee59.js"><link rel="prefetch" href="/assets/js/57.0a78afcc.js"><link rel="prefetch" href="/assets/js/58.d75522d5.js"><link rel="prefetch" href="/assets/js/59.2543ea7e.js"><link rel="prefetch" href="/assets/js/6.6d27b31c.js"><link rel="prefetch" href="/assets/js/60.16f65788.js"><link rel="prefetch" href="/assets/js/61.d6e2d8b6.js"><link rel="prefetch" href="/assets/js/62.183c4095.js"><link rel="prefetch" href="/assets/js/63.920617f0.js"><link rel="prefetch" href="/assets/js/64.5b2731e6.js"><link rel="prefetch" href="/assets/js/65.56420cc0.js"><link rel="prefetch" href="/assets/js/66.2ebd0c92.js"><link rel="prefetch" href="/assets/js/67.a414b285.js"><link rel="prefetch" href="/assets/js/68.989dacce.js"><link rel="prefetch" href="/assets/js/69.79a844b9.js"><link rel="prefetch" href="/assets/js/7.fee5c0b2.js"><link rel="prefetch" href="/assets/js/70.b789f7cb.js"><link rel="prefetch" href="/assets/js/71.90a71409.js"><link rel="prefetch" href="/assets/js/72.0dee4533.js"><link rel="prefetch" href="/assets/js/73.72b757a5.js"><link rel="prefetch" href="/assets/js/74.5cc6a8e7.js"><link rel="prefetch" href="/assets/js/75.a3efa729.js"><link rel="prefetch" href="/assets/js/76.ee52fbb0.js"><link rel="prefetch" href="/assets/js/77.2c257317.js"><link rel="prefetch" href="/assets/js/78.831d9b7b.js"><link rel="prefetch" href="/assets/js/79.7940520a.js"><link rel="prefetch" href="/assets/js/8.7f9f9c54.js"><link rel="prefetch" href="/assets/js/80.2f951622.js"><link rel="prefetch" href="/assets/js/81.fb674315.js"><link rel="prefetch" href="/assets/js/82.b9069b51.js"><link rel="prefetch" href="/assets/js/83.d718aedc.js"><link rel="prefetch" href="/assets/js/84.95180f04.js"><link rel="prefetch" href="/assets/js/85.3253eaff.js"><link rel="prefetch" href="/assets/js/86.3663d770.js"><link rel="prefetch" href="/assets/js/87.0c11349f.js"><link rel="prefetch" href="/assets/js/88.f5fac9dc.js"><link rel="prefetch" href="/assets/js/89.5e9c86e8.js"><link rel="prefetch" href="/assets/js/9.759c07c6.js"><link rel="prefetch" href="/assets/js/90.faeb161a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">牛初九博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/article/nacos.html" class="sidebar-link">注册中心Nacos集群搭建</a></li><li><a href="/article/nacos-1.html" class="sidebar-link">Nacos配置中心和服务的注册发现</a></li><li><a href="/article/login.html" class="sidebar-link">怎样实现登录？| Cookie or JWT</a></li><li><a href="/article/oauth.html" class="sidebar-link">OAuth授权</a></li><li><a href="/article/sso.html" class="sidebar-link">SSO单点登录流程</a></li><li><a href="/article/front-back.html" class="sidebar-link">前后端分离 | 登录状态</a></li><li><a href="/article/MySQL+Keepalived.html" class="sidebar-link">MySQL+Keepalived高可用</a></li><li><a href="/article/mysql-ms.html" class="sidebar-link">MySQL主从同步配置</a></li><li><a href="/article/mysql-huan.html" class="sidebar-link">MySQL中的幻读，你真的理解吗？</a></li><li><a href="/article/db-pool.html" class="sidebar-link">数据库连接池数量设置为多少？</a></li><li><a href="/article/CSRF.html" class="sidebar-link">CSRF的原理与防御</a></li><li><a href="/article/redis-lock.html" class="sidebar-link">Redis分布式锁</a></li><li><a href="/article/limit.html" class="sidebar-link">MySql分页查询慢</a></li><li><a href="/article/taglib.html" class="sidebar-link">自制权限框架（一）jsp标签</a></li><li><a href="/article/annotation.html" class="sidebar-link">自制权限框架（二）注解</a></li><li><a href="/article/jmeter-1.html" class="sidebar-link">JMeter测试（一）</a></li><li><a href="/article/jmeter-2.html" class="sidebar-link">JMeter测试（二）</a></li><li><a href="/article/spring-security.html" class="sidebar-link">Spring Security实现RBAC权限管理</a></li><li><a href="/article/nginx1.html" class="sidebar-link">Nginx简介（一）</a></li><li><a href="/article/nginx2.html" class="sidebar-link">Nginx简介（二）</a></li><li><a href="/article/string.html" class="sidebar-link">String是值传递还是引用传递</a></li><li><a href="/article/redis-cluster.html" class="sidebar-link">Redis集群</a></li><li><a href="/article/cas.html" class="sidebar-link">CAS与OAuth2的区别</a></li><li><a href="/article/spring-eureka-2.html" class="sidebar-link">Eureka服务注册与发现</a></li><li><a href="/article/spring-mobile.html" class="sidebar-link">Spring Mobile</a></li><li><a href="/article/es-1.html" class="sidebar-link">ES学习（一）ES的安装与启动</a></li><li><a href="/article/es-2.html" class="sidebar-link">ES学习（二）ES的集群原理</a></li><li><a href="/article/es-3.html" class="sidebar-link">ES学习（三）新建索引</a></li><li><a href="/article/es-4.html" class="sidebar-link">ES学习（四）字段类型（mapping）</a></li><li><a href="/article/es-5.html" class="sidebar-link">ES学习（五）动态映射</a></li><li><a href="/article/es-6.html" class="sidebar-link">ES学习（六）分析器</a></li><li><a href="/article/es-7.html" class="sidebar-link">ES学习（七）IK中文分词器</a></li><li><a href="/article/es-8.html" class="sidebar-link">ES学习（八）数据的增删改</a></li><li><a href="/article/es-9.html" class="sidebar-link">ES学习（九）搜索</a></li><li><a href="/article/es-10.html" aria-current="page" class="active sidebar-link">ES学习（十）聚合查询</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/article/es-10.html#metrics-聚合查询" class="sidebar-link">metrics 聚合查询</a></li><li class="sidebar-sub-header"><a href="/article/es-10.html#bucket-聚合查询" class="sidebar-link">Bucket 聚合查询</a></li></ul></li><li><a href="/article/es-11.html" class="sidebar-link">ES学习（十一）与SpringBoot结合</a></li><li><a href="/article/es-12.html" class="sidebar-link">ES学习（十二）高亮 和 搜索建议</a></li><li><a href="/article/es-13.html" class="sidebar-link">ES学习（十三）GEO位置搜索</a></li><li><a href="/article/rocketmq-1.html" class="sidebar-link">RocketMQ系列（一）基本概念</a></li><li><a href="/article/rocketmq-2.html" class="sidebar-link">RocketMQ系列（二）环境搭建</a></li><li><a href="/article/rocketmq-3.html" class="sidebar-link">RocketMQ系列（三）消息的生产与消费</a></li><li><a href="/article/rocketmq-4.html" class="sidebar-link">RocketMQ系列（四）顺序消费</a></li><li><a href="/article/rocketmq-5.html" class="sidebar-link">RocketMQ系列（五）广播与延迟消息</a></li><li><a href="/article/rocketmq-6.html" class="sidebar-link">RocketMQ系列（六）批量发送与过滤</a></li><li><a href="/article/rocketmq-7.html" class="sidebar-link">RocketMQ系列（七）事务消息</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="es7学习笔记-十-聚合查询"><a href="#es7学习笔记-十-聚合查询" class="header-anchor">#</a> ES7学习笔记（十）聚合查询</h1> <p>聚合查询，它是在搜索的结果上，提供的一些聚合数据信息的方法。比如：求和、最大值、平均数等。聚合查询的类型有很多种，每一种类型都有它自己的目的和输出。在ES中，也有很多种聚合查询，下面我们看看聚合查询的语法结构，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token string">&quot;aggregations&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;&lt;aggregation_name&gt;&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;&lt;aggregation_type&gt;&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token operator">&lt;</span>aggregation_body<span class="token operator">&gt;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">[</span>,<span class="token string">&quot;meta&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>  <span class="token punctuation">[</span><span class="token operator">&lt;</span>meta_data_body<span class="token operator">&gt;</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>?
+        <span class="token punctuation">[</span>,<span class="token string">&quot;aggregations&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>sub_aggregation<span class="token operator">&gt;</span><span class="token punctuation">]</span>+ <span class="token punctuation">}</span> <span class="token punctuation">]</span>?
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">[</span>,<span class="token string">&quot;&lt;aggregation_name_2&gt;&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span> <span class="token punctuation">..</span>. <span class="token punctuation">}</span> <span class="token punctuation">]</span>*
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>aggregations</code>实体包含了所有的聚合查询，如果是多个聚合查询可以用数组，如果只有一个聚合查询使用对象，<code>aggregations</code>也可以简写为<code>aggs</code>。<code>aggregations</code>里边的每一个聚合查询都有一个逻辑名称，这个名称是用户自定义的，在我们的语法结构中，对应的是<code>&lt;aggregation_name&gt;</code>。比如我们的聚合查询要计算平均价格，这时我们自定义的聚合查询的名字就可以叫做<code>avg_price</code>，这个名字要在聚合查询中保持唯一。</p> <p>在自定义的聚合查询对象中，需要指定聚合查询的类型，这个类型字段往往是对象中的第一个字段，在上面的语法结构中，对应的是<code>&lt;aggregation_type&gt;</code>。在聚合查询的内部，还可以有子聚合查询，对应的是<code>aggregations</code>，但是只有<code>Bucketing</code>类型的聚合查询才可以有子聚合查询。</p> <h2 id="metrics-聚合查询"><a href="#metrics-聚合查询" class="header-anchor">#</a> metrics 聚合查询</h2> <p>metrics 我觉得在这里翻译成“指标”比较好，也不是太准确，我们还是用英文比较好。metrics 聚合查询的值都是从查询结果中的某一个字段（field）提炼出来的，下面我们就看看一些常用的metrics 聚合查询。我们有如下的一些索引数据，大家先看一下，</p> <p><img src="/assets/img/image-20200526102528507.643e87af.png" alt="image-20200526102528507"></p> <p>索引的名字叫做<code>bank</code>，一些关键的字段有<code>account_number</code>银行账号，<code>balance</code>账户余额，<code>firstname</code>和<code>lastname</code>等，大家可以直接看出它们代表的含义。假如我们想看看银行里所有人的平均余额是多少，那么查询的语句该怎么写呢？</p> <div class="language-shell extra-class"><pre class="language-shell"><code>POST /bank/_search
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;query&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;bool&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;must&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;match_all&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">&quot;aggs&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;avg_balance&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;avg&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;field&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;balance&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在查询语句中，查询的条件匹配的是全部，在聚合查询中，我们自定义了一个<code>avg_balance</code>的聚合查询，它的类型是<code>avg</code>，求平均数，然后我们指定字段是<code>balance</code>，也就是我们要计算平均数的字段。我们执行一下，然后看看返回的结果，</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;took&quot;</span><span class="token operator">:</span> <span class="token number">11</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;timed_out&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;skipped&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;hits&quot;</span><span class="token operator">:</span> ……
+	<span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;avg_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">25714.837</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在返回的结果中，我们看到在<code>aggregations</code>中，返回了我们自定义的聚合查询<code>avg_balance</code>，并且计算的平均值是<code>25714.837</code>。</p> <p>如果我们要查询<code>balance</code>的最大、最小、平均、求和、数量等，可以使用<code>stats</code>查询，我们来看一下如何发送这个请求，</p> <div class="language-shell extra-class"><pre class="language-shell"><code>POST /bank/_search
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;query&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;bool&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;must&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;match_all&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">&quot;aggs&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;stats_balance&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;stats&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;field&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;balance&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们只需要把前面聚合查询的类型改为<code>stats</code>就可以了，我们看一下返回的结果，</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;took&quot;</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;timed_out&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;_shards&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;total&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;successful&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;skipped&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;failed&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;hits&quot;</span><span class="token operator">:</span> ……
+	<span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;stats_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">&quot;count&quot;</span><span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;min&quot;</span><span class="token operator">:</span> <span class="token number">1011</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;max&quot;</span><span class="token operator">:</span> <span class="token number">49989</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;avg&quot;</span><span class="token operator">:</span> <span class="token number">25714.837</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;sum&quot;</span><span class="token operator">:</span> <span class="token number">25714837</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们可以看到在返回的结果中，返回了5个字段，我们最常用的最大、最小、平均、求和、数量都包含在内，很方便是不是。</p> <h2 id="bucket-聚合查询"><a href="#bucket-聚合查询" class="header-anchor">#</a> Bucket 聚合查询</h2> <p>Bucket 聚合不像metrics 那样基于某一个值去计算，每一个Bucket （桶）是按照我们定义的准则去判断数据是否会落入桶（bucket）中。一个单独的响应中，bucket（桶）的最大个数默认是10000，我们可以通过<code>serarch.max_buckets</code>去进行调整。</p> <p>如果从定义来看，理解Bucket聚合查询还是比较难的，而且Bucket聚合查询的种类也有很多，给大家一一介绍不太可能，我们举两个实际中用的比较多的例子吧。在上面的metrics 聚合中，我们可以查询到数量（count），但是我们能不能分组呢？是不是和数据库中的<code>group by</code>联系起来了？对，Bucket 聚合查询就像是数据库中的<code>group by</code>，我们还用上面银行的索引，比如说我们要看各个年龄段的存款人数，那么查询语句我们该怎么写呢？这里就要使用Bucket 聚合中的Terms聚合查询，查询语句如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>POST /bank/_search
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;query&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;bool&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;must&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;match_all&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">&quot;aggs&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;ages&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;terms&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;field&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;age&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>其中，<code>ages</code>是我们定义的聚合查询的名称，<code>terms</code>指定要分组的列，我们运行一下，看看结果，</p> <div class="language-json extra-class"><pre class="language-json"><code>……
+<span class="token punctuation">{</span>
+    <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;ages&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;doc_count_error_upper_bound&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;sum_other_doc_count&quot;</span><span class="token operator">:</span> <span class="token number">463</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;buckets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">31</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">61</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">60</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">26</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">59</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">35</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">36</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">51</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">51</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">33</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">34</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">49</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们可以看到在返回的结果中，每个年龄的数据都汇总出来了。假如我们要看每个年龄段的存款余额，该怎么办呢？这里就要用到子聚合查询了，在Bucket 聚合中，再加入子聚合查询了，我们看看怎么写，</p> <div class="language-shell extra-class"><pre class="language-shell"><code>POST /bank/_search
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;query&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;bool&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;must&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;match_all&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">&quot;aggs&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;ages&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;terms&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;field&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;age&quot;</span>
+      <span class="token punctuation">}</span>,
+      <span class="token string">&quot;aggs&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;sum_balance&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">&quot;sum&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;field&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;balance&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们在聚合类型<code>terms</code>的后面又加了子聚合查询，在子聚合查询中，又自定义了一个<code>sum_balance</code>的查询，它是一个<code>metrics</code>聚合查询，要对字段<code>balance</code>进行求和。我们运行一下，看看结果。</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;ages&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;doc_count_error_upper_bound&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;sum_other_doc_count&quot;</span><span class="token operator">:</span> <span class="token number">463</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;buckets&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">31</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">61</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1727088</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">39</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">60</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1516175</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">26</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">59</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1368494</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1245470</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">35</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1151108</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">36</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">52</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1153085</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">51</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1261285</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">51</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1441968</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">33</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1254697</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token number">34</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;doc_count&quot;</span><span class="token operator">:</span> <span class="token number">49</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;sum_balance&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1313688</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们看到返回结果中，增加了我们定义的<code>sum_balance</code>字段，它是<code>balance</code>余额的汇总。这个例子我们应该对bucket（桶）这个概念有了一个非常形象的认识了。还有一些其他的bucket聚合查询，这里就不给大家一一介绍了，比如：我们只想查某几个年龄段的余额汇总，就可以使用<code>filters-aggregation</code>。</p> <p>好了，ES的一些基本的聚合查询就给大家介绍到这里了，如果要用到一些其他的聚合查询，可以参照ES的官方文档。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/article/es-9.html" class="prev">
+        ES学习（九）搜索
+      </a></span> <span class="next"><a href="/article/es-11.html">
+        ES学习（十一）与SpringBoot结合
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.16ffb530.js" defer></script><script src="/assets/js/2.2805d820.js" defer></script><script src="/assets/js/24.d89bf6ba.js" defer></script>
+  </body>
+</html>

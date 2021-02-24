@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ES7学习笔记（一）Elasticsearch的安装与启动 | 牛初九博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="Java 技术 互联网 Spring Redis Mysql ">
+    <meta name="keywords" content="Java 技术 互联网 Spring SpringBoot SpringCloud Elastic Search MySQL MyCAT 分布式 集群">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.16ffb530.js" as="script"><link rel="preload" href="/assets/js/2.2805d820.js" as="script"><link rel="preload" href="/assets/js/39.89829fe9.js" as="script"><link rel="prefetch" href="/assets/js/10.7af0fa3b.js"><link rel="prefetch" href="/assets/js/11.bf2b4ef3.js"><link rel="prefetch" href="/assets/js/12.ffa316c1.js"><link rel="prefetch" href="/assets/js/13.7bf9e28b.js"><link rel="prefetch" href="/assets/js/14.fe8172bf.js"><link rel="prefetch" href="/assets/js/15.12492866.js"><link rel="prefetch" href="/assets/js/16.1e0b9828.js"><link rel="prefetch" href="/assets/js/17.5274e857.js"><link rel="prefetch" href="/assets/js/18.14c495e2.js"><link rel="prefetch" href="/assets/js/19.0065f7d5.js"><link rel="prefetch" href="/assets/js/20.15195b8f.js"><link rel="prefetch" href="/assets/js/21.a49d2486.js"><link rel="prefetch" href="/assets/js/22.7625f3ea.js"><link rel="prefetch" href="/assets/js/23.6829be75.js"><link rel="prefetch" href="/assets/js/24.d89bf6ba.js"><link rel="prefetch" href="/assets/js/25.f9c8e982.js"><link rel="prefetch" href="/assets/js/26.df00cb25.js"><link rel="prefetch" href="/assets/js/27.c2c39573.js"><link rel="prefetch" href="/assets/js/28.9d6955a7.js"><link rel="prefetch" href="/assets/js/29.793a5925.js"><link rel="prefetch" href="/assets/js/3.99170183.js"><link rel="prefetch" href="/assets/js/30.1d4eb018.js"><link rel="prefetch" href="/assets/js/31.c3635b83.js"><link rel="prefetch" href="/assets/js/32.39f76767.js"><link rel="prefetch" href="/assets/js/33.9623bd00.js"><link rel="prefetch" href="/assets/js/34.685b37ce.js"><link rel="prefetch" href="/assets/js/35.b6d262de.js"><link rel="prefetch" href="/assets/js/36.706cce0c.js"><link rel="prefetch" href="/assets/js/37.4b559cf9.js"><link rel="prefetch" href="/assets/js/38.8440f0a1.js"><link rel="prefetch" href="/assets/js/4.44e35b71.js"><link rel="prefetch" href="/assets/js/40.1eae592a.js"><link rel="prefetch" href="/assets/js/41.307e59e5.js"><link rel="prefetch" href="/assets/js/42.9c9598a9.js"><link rel="prefetch" href="/assets/js/43.6de9381c.js"><link rel="prefetch" href="/assets/js/44.0bda172b.js"><link rel="prefetch" href="/assets/js/45.7bd4678e.js"><link rel="prefetch" href="/assets/js/46.9601296c.js"><link rel="prefetch" href="/assets/js/47.8279d007.js"><link rel="prefetch" href="/assets/js/48.e8ae43c5.js"><link rel="prefetch" href="/assets/js/49.088eb890.js"><link rel="prefetch" href="/assets/js/5.7b7d1525.js"><link rel="prefetch" href="/assets/js/50.a104d084.js"><link rel="prefetch" href="/assets/js/51.0c101ee6.js"><link rel="prefetch" href="/assets/js/52.4269f250.js"><link rel="prefetch" href="/assets/js/53.1c55a938.js"><link rel="prefetch" href="/assets/js/54.dab6fc62.js"><link rel="prefetch" href="/assets/js/55.18a1bf4c.js"><link rel="prefetch" href="/assets/js/56.b2c0ee59.js"><link rel="prefetch" href="/assets/js/57.0a78afcc.js"><link rel="prefetch" href="/assets/js/58.d75522d5.js"><link rel="prefetch" href="/assets/js/59.2543ea7e.js"><link rel="prefetch" href="/assets/js/6.6d27b31c.js"><link rel="prefetch" href="/assets/js/60.16f65788.js"><link rel="prefetch" href="/assets/js/61.d6e2d8b6.js"><link rel="prefetch" href="/assets/js/62.183c4095.js"><link rel="prefetch" href="/assets/js/63.920617f0.js"><link rel="prefetch" href="/assets/js/64.5b2731e6.js"><link rel="prefetch" href="/assets/js/65.56420cc0.js"><link rel="prefetch" href="/assets/js/66.2ebd0c92.js"><link rel="prefetch" href="/assets/js/67.a414b285.js"><link rel="prefetch" href="/assets/js/68.989dacce.js"><link rel="prefetch" href="/assets/js/69.79a844b9.js"><link rel="prefetch" href="/assets/js/7.fee5c0b2.js"><link rel="prefetch" href="/assets/js/70.b789f7cb.js"><link rel="prefetch" href="/assets/js/71.90a71409.js"><link rel="prefetch" href="/assets/js/72.0dee4533.js"><link rel="prefetch" href="/assets/js/73.72b757a5.js"><link rel="prefetch" href="/assets/js/74.5cc6a8e7.js"><link rel="prefetch" href="/assets/js/75.a3efa729.js"><link rel="prefetch" href="/assets/js/76.ee52fbb0.js"><link rel="prefetch" href="/assets/js/77.2c257317.js"><link rel="prefetch" href="/assets/js/78.831d9b7b.js"><link rel="prefetch" href="/assets/js/79.7940520a.js"><link rel="prefetch" href="/assets/js/8.7f9f9c54.js"><link rel="prefetch" href="/assets/js/80.2f951622.js"><link rel="prefetch" href="/assets/js/81.fb674315.js"><link rel="prefetch" href="/assets/js/82.b9069b51.js"><link rel="prefetch" href="/assets/js/83.d718aedc.js"><link rel="prefetch" href="/assets/js/84.95180f04.js"><link rel="prefetch" href="/assets/js/85.3253eaff.js"><link rel="prefetch" href="/assets/js/86.3663d770.js"><link rel="prefetch" href="/assets/js/87.0c11349f.js"><link rel="prefetch" href="/assets/js/88.f5fac9dc.js"><link rel="prefetch" href="/assets/js/89.5e9c86e8.js"><link rel="prefetch" href="/assets/js/9.759c07c6.js"><link rel="prefetch" href="/assets/js/90.faeb161a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">牛初九博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/article/nacos.html" class="sidebar-link">注册中心Nacos集群搭建</a></li><li><a href="/article/nacos-1.html" class="sidebar-link">Nacos配置中心和服务的注册发现</a></li><li><a href="/article/login.html" class="sidebar-link">怎样实现登录？| Cookie or JWT</a></li><li><a href="/article/oauth.html" class="sidebar-link">OAuth授权</a></li><li><a href="/article/sso.html" class="sidebar-link">SSO单点登录流程</a></li><li><a href="/article/front-back.html" class="sidebar-link">前后端分离 | 登录状态</a></li><li><a href="/article/MySQL+Keepalived.html" class="sidebar-link">MySQL+Keepalived高可用</a></li><li><a href="/article/mysql-ms.html" class="sidebar-link">MySQL主从同步配置</a></li><li><a href="/article/mysql-huan.html" class="sidebar-link">MySQL中的幻读，你真的理解吗？</a></li><li><a href="/article/db-pool.html" class="sidebar-link">数据库连接池数量设置为多少？</a></li><li><a href="/article/CSRF.html" class="sidebar-link">CSRF的原理与防御</a></li><li><a href="/article/redis-lock.html" class="sidebar-link">Redis分布式锁</a></li><li><a href="/article/limit.html" class="sidebar-link">MySql分页查询慢</a></li><li><a href="/article/taglib.html" class="sidebar-link">自制权限框架（一）jsp标签</a></li><li><a href="/article/annotation.html" class="sidebar-link">自制权限框架（二）注解</a></li><li><a href="/article/jmeter-1.html" class="sidebar-link">JMeter测试（一）</a></li><li><a href="/article/jmeter-2.html" class="sidebar-link">JMeter测试（二）</a></li><li><a href="/article/spring-security.html" class="sidebar-link">Spring Security实现RBAC权限管理</a></li><li><a href="/article/nginx1.html" class="sidebar-link">Nginx简介（一）</a></li><li><a href="/article/nginx2.html" class="sidebar-link">Nginx简介（二）</a></li><li><a href="/article/string.html" class="sidebar-link">String是值传递还是引用传递</a></li><li><a href="/article/redis-cluster.html" class="sidebar-link">Redis集群</a></li><li><a href="/article/cas.html" class="sidebar-link">CAS与OAuth2的区别</a></li><li><a href="/article/spring-eureka-2.html" class="sidebar-link">Eureka服务注册与发现</a></li><li><a href="/article/spring-mobile.html" class="sidebar-link">Spring Mobile</a></li><li><a href="/article/es-1.html" aria-current="page" class="active sidebar-link">ES学习（一）ES的安装与启动</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/article/es-1.html#下载和安装" class="sidebar-link">下载和安装</a></li><li class="sidebar-sub-header"><a href="/article/es-1.html#es的配置" class="sidebar-link">ES的配置</a></li><li class="sidebar-sub-header"><a href="/article/es-1.html#系统配置" class="sidebar-link">系统配置</a></li><li class="sidebar-sub-header"><a href="/article/es-1.html#向集群中添加节点" class="sidebar-link">向集群中添加节点</a></li></ul></li><li><a href="/article/es-2.html" class="sidebar-link">ES学习（二）ES的集群原理</a></li><li><a href="/article/es-3.html" class="sidebar-link">ES学习（三）新建索引</a></li><li><a href="/article/es-4.html" class="sidebar-link">ES学习（四）字段类型（mapping）</a></li><li><a href="/article/es-5.html" class="sidebar-link">ES学习（五）动态映射</a></li><li><a href="/article/es-6.html" class="sidebar-link">ES学习（六）分析器</a></li><li><a href="/article/es-7.html" class="sidebar-link">ES学习（七）IK中文分词器</a></li><li><a href="/article/es-8.html" class="sidebar-link">ES学习（八）数据的增删改</a></li><li><a href="/article/es-9.html" class="sidebar-link">ES学习（九）搜索</a></li><li><a href="/article/es-10.html" class="sidebar-link">ES学习（十）聚合查询</a></li><li><a href="/article/es-11.html" class="sidebar-link">ES学习（十一）与SpringBoot结合</a></li><li><a href="/article/es-12.html" class="sidebar-link">ES学习（十二）高亮 和 搜索建议</a></li><li><a href="/article/es-13.html" class="sidebar-link">ES学习（十三）GEO位置搜索</a></li><li><a href="/article/rocketmq-1.html" class="sidebar-link">RocketMQ系列（一）基本概念</a></li><li><a href="/article/rocketmq-2.html" class="sidebar-link">RocketMQ系列（二）环境搭建</a></li><li><a href="/article/rocketmq-3.html" class="sidebar-link">RocketMQ系列（三）消息的生产与消费</a></li><li><a href="/article/rocketmq-4.html" class="sidebar-link">RocketMQ系列（四）顺序消费</a></li><li><a href="/article/rocketmq-5.html" class="sidebar-link">RocketMQ系列（五）广播与延迟消息</a></li><li><a href="/article/rocketmq-6.html" class="sidebar-link">RocketMQ系列（六）批量发送与过滤</a></li><li><a href="/article/rocketmq-7.html" class="sidebar-link">RocketMQ系列（七）事务消息</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="es7学习笔记-一-elasticsearch的安装与启动"><a href="#es7学习笔记-一-elasticsearch的安装与启动" class="header-anchor">#</a> ES7学习笔记（一）Elasticsearch的安装与启动</h1> <p>Elasticsearch是一个非常好用的搜索引擎，和Solr一样，他们都是基于倒排索引的。今天我们就看一看Elasticsearch如何进行安装。</p> <h2 id="下载和安装"><a href="#下载和安装" class="header-anchor">#</a> 下载和安装</h2> <p><strong>今天我们的目的是搭建一个有3个节点的Elasticsearch集群</strong>，所以我们找了3台虚拟机，ip分别是：</p> <ul><li>192.168.73.130</li> <li>192.168.73.131</li> <li>192.168.73.132</li></ul> <p>然后我们要下载ES，这里我们采用的版本是<code>7.6.0</code>。我们进入到<code>/opt</code>目录下，下载elasticsearch7.6.0</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">curl</span> -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.0-linux-x86_64.tar.gz
+</code></pre></div><p>下载的过程比较慢。下载完成后，我们解压：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">tar</span> -zxvf elasticsearch-7.6.0-linux-x86_64.tar.gz
+</code></pre></div><p>在启动elasticsearch之前，这里有一个<strong>重点：ES在启动的时候是不允许使用root账户的</strong>，所以我们要新建一个elasticsearch用户：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">useradd</span> elasticsearch
+</code></pre></div><p>然后把<code>elasticsearch-7.6.0</code>这个目录和目录下所有的文件的拥有者都改成elasticsearch:</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">chown</span> elasticsearch:elasticsearch -R elasticsearch-7.6.0
+</code></pre></div><p>然后，我们切换到<code>elasticsearch</code>用户：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">su</span> - elasticsearch
+</code></pre></div><p>我们将ES安装在<code>/opt</code>目录下，先进入到<code>/opt</code>目录，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> /opt/elasticsearch-7.6.0
+</code></pre></div><p>我们启动一下，看看单机版能不能启动成功。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>./bin/elasticsearch
+</code></pre></div><p>可以启动成功。但是我们通过浏览器访问这个ip的9200端口时，是不成功的。我们需要对elasticsearch进行配置，才可以在别的机器上访问成功。</p> <h2 id="es的配置"><a href="#es的配置" class="header-anchor">#</a> ES的配置</h2> <p>es的所有配置文件都在<code>${ES_HOME}/config</code>这个目录下，首先我们设置一下jvm参数，打开jvm.options文件，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> jvm.options
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">################################################################</span>
+<span class="token comment">## IMPORTANT: JVM heap size</span>
+<span class="token comment">################################################################</span>
+<span class="token comment">##</span>
+<span class="token comment">## You should always set the min and max JVM heap</span>
+<span class="token comment">## size to the same value. For example, to set</span>
+<span class="token comment">## the heap to 4 GB, set:</span>
+<span class="token comment">##</span>
+<span class="token comment">## -Xms4g</span>
+<span class="token comment">## -Xmx4g</span>
+<span class="token comment">##</span>
+<span class="token comment">## See https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html</span>
+<span class="token comment">## for more information</span>
+<span class="token comment">##</span>
+<span class="token comment">################################################################</span>
+
+<span class="token comment"># Xms represents the initial size of total heap space</span>
+<span class="token comment"># Xmx represents the maximum size of total heap space</span>
+
+-Xms256m
+-Xmx256m
+
+</code></pre></div><p>我们改一下堆内存的大小，我这里使用的虚拟机，只分配了1g的内存，所以，我这里统一调整为256m内存，大家可以根据自己机器的内存情况进行调整。</p> <p>然后，我们再打开<code>elasticsearch.yml</code>文件，配置一下这里边的参数。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># ======================== Elasticsearch Configuration =========================</span>
+<span class="token comment">#</span>
+<span class="token comment"># NOTE: Elasticsearch comes with reasonable defaults for most settings.</span>
+<span class="token comment">#       Before you set out to tweak and tune the configuration, make sure you</span>
+<span class="token comment">#       understand what are you trying to accomplish and the consequences.</span>
+<span class="token comment">#</span>
+<span class="token comment"># The primary way of configuring a node is via this file. This template lists</span>
+<span class="token comment"># the most important settings you may want to configure for a production cluster.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Please consult the documentation for further information on configuration options:</span>
+<span class="token comment"># https://www.elastic.co/guide/en/elasticsearch/reference/index.html</span>
+<span class="token comment">#</span>
+<span class="token comment"># ---------------------------------- Cluster -----------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Use a descriptive name for your cluster:</span>
+<span class="token comment">#</span>
+cluster.name: cluster-a
+<span class="token comment">#</span>
+<span class="token comment"># ------------------------------------ Node ------------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Use a descriptive name for the node:</span>
+<span class="token comment">#</span>
+node.name: node-130
+<span class="token comment">#</span>
+<span class="token comment"># Add custom attributes to the node:</span>
+<span class="token comment">#</span>
+<span class="token comment">#node.attr.rack: r1</span>
+<span class="token comment">#</span>
+<span class="token comment"># ----------------------------------- Paths ------------------------------------</span>
+<span class="token comment">#</span>
+
+</code></pre></div><p>我们先配置一下集群的名字，也就是<code>cluster.name</code>，在这里，我们叫做<code>cluster-a</code>。在另外两台机器上，集群的名字也要叫做<code>cluster-a</code>，这样才能够组成一个集群。<strong>在ES中，集群名字相同的节点，会组成ES集群。</strong></p> <p>然后，我们再修改<code>node.name</code>节点名称，这个名称是每一个节点的，**所以，每个节点的名称都不能相同。**这里我们以ip命名，130这台机器，节点名称就叫<code>node-130</code>，另外两台叫做<code>node-131</code>和<code>node-132</code>。</p> <p>我们再接着看后面的配置，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># ----------------------------------- Paths ------------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Path to directory where to store the data (separate multiple locations by comma):</span>
+<span class="token comment">#</span>
+<span class="token comment">#path.data: /path/to/data</span>
+<span class="token comment">#</span>
+<span class="token comment"># Path to log files:</span>
+<span class="token comment">#</span>
+<span class="token comment">#path.logs: /path/to/logs</span>
+<span class="token comment">#</span>
+<span class="token comment"># ----------------------------------- Memory -----------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Lock the memory on startup:</span>
+<span class="token comment">#</span>
+<span class="token comment">#bootstrap.memory_lock: true</span>
+<span class="token comment">#</span>
+<span class="token comment"># Make sure that the heap size is set to about half the memory available</span>
+<span class="token comment"># on the system and that the owner of the process is allowed to use this</span>
+<span class="token comment"># limit.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Elasticsearch performs poorly when the system is swapping the memory.</span>
+<span class="token comment">#</span>
+<span class="token comment"># ---------------------------------- Network -----------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Set the bind address to a specific IP (IPv4 or IPv6):</span>
+<span class="token comment">#</span>
+network.host: <span class="token number">192.168</span>.73.130
+<span class="token comment">#</span>
+<span class="token comment"># Set a custom port for HTTP:</span>
+<span class="token comment">#</span>
+<span class="token comment">#http.port: 9200</span>
+
+</code></pre></div><p>路径和内存，咱们使用默认的就好，咱们重点看一下网络。我们需要指定一下ES绑定的地址，如果不设置，那么默认绑定的就是localhost，也就是127.0.0.1，这样就只有本机能够访问了，其他机器是访问不了的。所以这里我们要绑定每台机器的地址，分别是<code>192.168.73.130</code>，<code>192.168.73.131</code>，<code>192.168.73.132</code>。</p> <p>接下来，我们看一下集群的相关配置，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># --------------------------------- Discovery ----------------------------------</span>
+<span class="token comment">#</span>
+<span class="token comment"># Pass an initial list of hosts to perform discovery when this node is started:</span>
+<span class="token comment"># The default list of hosts is [&quot;127.0.0.1&quot;, &quot;[::1]&quot;]</span>
+<span class="token comment">#</span>
+discovery.seed_hosts: <span class="token punctuation">[</span><span class="token string">&quot;192.168.73.130&quot;</span>, <span class="token string">&quot;192.168.73.131&quot;</span>,<span class="token string">&quot;192.168.73.132&quot;</span><span class="token punctuation">]</span>
+<span class="token comment">#</span>
+<span class="token comment"># Bootstrap the cluster using an initial set of master-eligible nodes:</span>
+<span class="token comment">#</span>
+cluster.initial_master_nodes: <span class="token punctuation">[</span><span class="token string">&quot;node-130&quot;</span>, <span class="token string">&quot;node-131&quot;</span>, <span class="token string">&quot;node-132&quot;</span><span class="token punctuation">]</span>
+<span class="token comment">#</span>
+<span class="token comment"># For more information, consult the discovery and cluster formation module documentation.</span>
+<span class="token comment">#</span>
+
+</code></pre></div><p>也就是Discovery这一段的配置，我们先设置一下集群中节点的地址，也就是<code>discovery.seed_hosts</code>这一段，我们把3台机器的ip写在这里。然后再把3台机器的节点名称写在<code>cluster.initial_master_nodes</code>，好了，集群的配置到这里就告一段落了。</p> <h2 id="系统配置"><a href="#系统配置" class="header-anchor">#</a> 系统配置</h2> <p>接下来我们再看看重要的系统配置。在ES的官网上，有这样一句话，</p> <blockquote><p>Ideally, Elasticsearch should run alone on a server and use all of the resources available to it.</p></blockquote> <p>翻译过来是，合理的做法是，ES应该在一个服务中单独运行，并且可以使用这个机器中所有的可用资源。</p> <p>只要你在配置文件中配置了<code>network.host</code>，ES就认为你将发布生产环境，如果你的一些配置不正确，那么ES就不会启动成功。在这里，ES也要求我们对系统的一些配置做出修改。</p> <h3 id="ulimit调整"><a href="#ulimit调整" class="header-anchor">#</a> ulimit调整</h3> <p>首先，我们要修改Linux系统的文件打开数，将其调到65535。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">su</span> -
+<span class="token builtin class-name">ulimit</span> -n <span class="token number">65535</span> 
+<span class="token builtin class-name">exit</span>
+</code></pre></div><p>然后再修改<code>limits.conf</code>文件，我们同样切换到root用户，打开<code>limits.conf</code>文件，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> /etc/security/limits.conf
+</code></pre></div><p>在文件的最后添加<code>elasticsearch - nofile 65535</code>，然后保存退出。</p> <h3 id="关闭swapping"><a href="#关闭swapping" class="header-anchor">#</a> 关闭swapping</h3> <p>其次，在ES的官方文档上，要求<code>Disabled Swapping</code>，我们要关掉它。执行以下命令：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">sudo</span> swapoff -a
+</code></pre></div><p>这只是临时的关闭swapping，重启linux后，会失效。如果要永久的关闭swapping，需要编辑<code>/etc/fstab</code>文件，将包含swap的行的注释掉。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>/dev/mapper/centos-root /                       xfs     defaults        <span class="token number">0</span> <span class="token number">0</span>
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>6a38540f-2ba9-437b-ac8b-8757f5754fff /boot                   xfs     defaults        <span class="token number">0</span> <span class="token number">0</span>
+<span class="token comment"># /dev/mapper/centos-swap swap                    swap    defaults        0 0</span>
+
+</code></pre></div><h3 id="调整mmapfs的数值"><a href="#调整mmapfs的数值" class="header-anchor">#</a> 调整mmapfs的数值</h3> <p>由于ES是使用<code>mmapfs</code>存储索引，但是系统的默认值太低了，我们调高一点。</p> <div class="language-she extra-class"><pre class="language-text"><code>sysctl -w vm.max_map_count=262144
+</code></pre></div><h3 id="线程的数量"><a href="#线程的数量" class="header-anchor">#</a> 线程的数量</h3> <p>确保elasticsearch用户最少可创建4096个线程。我们还是要以root用户去设置。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">su</span> -
+<span class="token builtin class-name">ulimit</span> -u <span class="token number">4096</span>
+</code></pre></div><p>同样，这知识临时的方案，linux重启后会失效，我们需要修改配置文件<code>/etc/security/limits.conf</code>，将<code>nproc</code>设置为4096。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>elasticsearch  -  nproc <span class="token number">4096</span>
+</code></pre></div><p>好，到这里我们所有的配置就完成了，现在依次启动3个节点的ES。启动完成后，我们在浏览器中检查以下集群的状态，<code>http://192.168.73.130:9200/_cluster/health</code>，</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span><span class="token property">&quot;cluster_name&quot;</span><span class="token operator">:</span><span class="token string">&quot;cluster-a&quot;</span><span class="token punctuation">,</span><span class="token property">&quot;status&quot;</span><span class="token operator">:</span><span class="token string">&quot;green&quot;</span><span class="token punctuation">,</span><span class="token property">&quot;timed_out&quot;</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token property">&quot;number_of_nodes&quot;</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token property">&quot;number_of_data_nodes&quot;</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token property">&quot;active_primary_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;active_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;relocating_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;initializing_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;unassigned_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;delayed_unassigned_shards&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;number_of_pending_tasks&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;number_of_in_flight_fetch&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;task_max_waiting_in_queue_millis&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token property">&quot;active_shards_percent_as_number&quot;</span><span class="token operator">:</span><span class="token number">100.0</span><span class="token punctuation">}</span>
+</code></pre></div><p>我们看到status是green。说明我们的ES集群搭建成功了。</p> <h2 id="向集群中添加节点"><a href="#向集群中添加节点" class="header-anchor">#</a> 向集群中添加节点</h2> <p>当你启动一个ES实例的时候，你正在启动了一个ES节点。一个ES集群是一组有着相同<code>cluster.name</code>参数的节点。当节点加入或离开集群时，集群会自动重组，甚至在可用的节点间重新分配数据。</p> <p>如果你正在运行一个单一的ES实例，那么你就有了一个单节点的集群。所有的基础分片都在这个单节点上，没有副本节点。因此集群的状态是黄色，集群处于可用状态，但是在事故中有丢失数据的风险。</p> <p>向集群中添加节点可以提升集群的容量和可靠性，默认的，一个节点既是一个数据节点，也是一个有资格被选举成master节点，从而控制整个集群的节点。你也可以为了一些特殊的用途配置一个新的节点，例如，处理接收的请求。</p> <p>当你向集群中添加更多的节点，集群会自动分配副本分片。当所有的基础分片和副本分片都处于激活状态，集群的状态会变为绿色。</p> <p>向集群中添加节点：</p> <ol><li>配置一个新的ES实例；</li> <li>在<code>cluster.name</code>变量中指定相同的集群名称；</li> <li>在<code>discovery.seed_hosts</code>中填写上集群的ip地址；</li> <li>启动ES，这个节点会被自动的发现，并且加入集群。</li></ol> <p>到这里，向集群中添加节点就完成了。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/article/spring-mobile.html" class="prev">
+        Spring Mobile
+      </a></span> <span class="next"><a href="/article/es-2.html">
+        ES学习（二）ES的集群原理
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.16ffb530.js" defer></script><script src="/assets/js/2.2805d820.js" defer></script><script src="/assets/js/39.89829fe9.js" defer></script>
+  </body>
+</html>

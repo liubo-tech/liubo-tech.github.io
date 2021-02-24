@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis Cluster（集群）的搭建 返回 | 牛初九博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="Java 技术 互联网 Spring Redis Mysql ">
+    <meta name="keywords" content="Java 技术 互联网 Spring SpringBoot SpringCloud Elastic Search MySQL MyCAT 分布式 集群">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.16ffb530.js" as="script"><link rel="preload" href="/assets/js/2.2805d820.js" as="script"><link rel="preload" href="/assets/js/66.2ebd0c92.js" as="script"><link rel="prefetch" href="/assets/js/10.7af0fa3b.js"><link rel="prefetch" href="/assets/js/11.bf2b4ef3.js"><link rel="prefetch" href="/assets/js/12.ffa316c1.js"><link rel="prefetch" href="/assets/js/13.7bf9e28b.js"><link rel="prefetch" href="/assets/js/14.fe8172bf.js"><link rel="prefetch" href="/assets/js/15.12492866.js"><link rel="prefetch" href="/assets/js/16.1e0b9828.js"><link rel="prefetch" href="/assets/js/17.5274e857.js"><link rel="prefetch" href="/assets/js/18.14c495e2.js"><link rel="prefetch" href="/assets/js/19.0065f7d5.js"><link rel="prefetch" href="/assets/js/20.15195b8f.js"><link rel="prefetch" href="/assets/js/21.a49d2486.js"><link rel="prefetch" href="/assets/js/22.7625f3ea.js"><link rel="prefetch" href="/assets/js/23.6829be75.js"><link rel="prefetch" href="/assets/js/24.d89bf6ba.js"><link rel="prefetch" href="/assets/js/25.f9c8e982.js"><link rel="prefetch" href="/assets/js/26.df00cb25.js"><link rel="prefetch" href="/assets/js/27.c2c39573.js"><link rel="prefetch" href="/assets/js/28.9d6955a7.js"><link rel="prefetch" href="/assets/js/29.793a5925.js"><link rel="prefetch" href="/assets/js/3.99170183.js"><link rel="prefetch" href="/assets/js/30.1d4eb018.js"><link rel="prefetch" href="/assets/js/31.c3635b83.js"><link rel="prefetch" href="/assets/js/32.39f76767.js"><link rel="prefetch" href="/assets/js/33.9623bd00.js"><link rel="prefetch" href="/assets/js/34.685b37ce.js"><link rel="prefetch" href="/assets/js/35.b6d262de.js"><link rel="prefetch" href="/assets/js/36.706cce0c.js"><link rel="prefetch" href="/assets/js/37.4b559cf9.js"><link rel="prefetch" href="/assets/js/38.8440f0a1.js"><link rel="prefetch" href="/assets/js/39.89829fe9.js"><link rel="prefetch" href="/assets/js/4.44e35b71.js"><link rel="prefetch" href="/assets/js/40.1eae592a.js"><link rel="prefetch" href="/assets/js/41.307e59e5.js"><link rel="prefetch" href="/assets/js/42.9c9598a9.js"><link rel="prefetch" href="/assets/js/43.6de9381c.js"><link rel="prefetch" href="/assets/js/44.0bda172b.js"><link rel="prefetch" href="/assets/js/45.7bd4678e.js"><link rel="prefetch" href="/assets/js/46.9601296c.js"><link rel="prefetch" href="/assets/js/47.8279d007.js"><link rel="prefetch" href="/assets/js/48.e8ae43c5.js"><link rel="prefetch" href="/assets/js/49.088eb890.js"><link rel="prefetch" href="/assets/js/5.7b7d1525.js"><link rel="prefetch" href="/assets/js/50.a104d084.js"><link rel="prefetch" href="/assets/js/51.0c101ee6.js"><link rel="prefetch" href="/assets/js/52.4269f250.js"><link rel="prefetch" href="/assets/js/53.1c55a938.js"><link rel="prefetch" href="/assets/js/54.dab6fc62.js"><link rel="prefetch" href="/assets/js/55.18a1bf4c.js"><link rel="prefetch" href="/assets/js/56.b2c0ee59.js"><link rel="prefetch" href="/assets/js/57.0a78afcc.js"><link rel="prefetch" href="/assets/js/58.d75522d5.js"><link rel="prefetch" href="/assets/js/59.2543ea7e.js"><link rel="prefetch" href="/assets/js/6.6d27b31c.js"><link rel="prefetch" href="/assets/js/60.16f65788.js"><link rel="prefetch" href="/assets/js/61.d6e2d8b6.js"><link rel="prefetch" href="/assets/js/62.183c4095.js"><link rel="prefetch" href="/assets/js/63.920617f0.js"><link rel="prefetch" href="/assets/js/64.5b2731e6.js"><link rel="prefetch" href="/assets/js/65.56420cc0.js"><link rel="prefetch" href="/assets/js/67.a414b285.js"><link rel="prefetch" href="/assets/js/68.989dacce.js"><link rel="prefetch" href="/assets/js/69.79a844b9.js"><link rel="prefetch" href="/assets/js/7.fee5c0b2.js"><link rel="prefetch" href="/assets/js/70.b789f7cb.js"><link rel="prefetch" href="/assets/js/71.90a71409.js"><link rel="prefetch" href="/assets/js/72.0dee4533.js"><link rel="prefetch" href="/assets/js/73.72b757a5.js"><link rel="prefetch" href="/assets/js/74.5cc6a8e7.js"><link rel="prefetch" href="/assets/js/75.a3efa729.js"><link rel="prefetch" href="/assets/js/76.ee52fbb0.js"><link rel="prefetch" href="/assets/js/77.2c257317.js"><link rel="prefetch" href="/assets/js/78.831d9b7b.js"><link rel="prefetch" href="/assets/js/79.7940520a.js"><link rel="prefetch" href="/assets/js/8.7f9f9c54.js"><link rel="prefetch" href="/assets/js/80.2f951622.js"><link rel="prefetch" href="/assets/js/81.fb674315.js"><link rel="prefetch" href="/assets/js/82.b9069b51.js"><link rel="prefetch" href="/assets/js/83.d718aedc.js"><link rel="prefetch" href="/assets/js/84.95180f04.js"><link rel="prefetch" href="/assets/js/85.3253eaff.js"><link rel="prefetch" href="/assets/js/86.3663d770.js"><link rel="prefetch" href="/assets/js/87.0c11349f.js"><link rel="prefetch" href="/assets/js/88.f5fac9dc.js"><link rel="prefetch" href="/assets/js/89.5e9c86e8.js"><link rel="prefetch" href="/assets/js/9.759c07c6.js"><link rel="prefetch" href="/assets/js/90.faeb161a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">牛初九博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/article/nacos.html" class="sidebar-link">注册中心Nacos集群搭建</a></li><li><a href="/article/nacos-1.html" class="sidebar-link">Nacos配置中心和服务的注册发现</a></li><li><a href="/article/login.html" class="sidebar-link">怎样实现登录？| Cookie or JWT</a></li><li><a href="/article/oauth.html" class="sidebar-link">OAuth授权</a></li><li><a href="/article/sso.html" class="sidebar-link">SSO单点登录流程</a></li><li><a href="/article/front-back.html" class="sidebar-link">前后端分离 | 登录状态</a></li><li><a href="/article/MySQL+Keepalived.html" class="sidebar-link">MySQL+Keepalived高可用</a></li><li><a href="/article/mysql-ms.html" class="sidebar-link">MySQL主从同步配置</a></li><li><a href="/article/mysql-huan.html" class="sidebar-link">MySQL中的幻读，你真的理解吗？</a></li><li><a href="/article/db-pool.html" class="sidebar-link">数据库连接池数量设置为多少？</a></li><li><a href="/article/CSRF.html" class="sidebar-link">CSRF的原理与防御</a></li><li><a href="/article/redis-lock.html" class="sidebar-link">Redis分布式锁</a></li><li><a href="/article/limit.html" class="sidebar-link">MySql分页查询慢</a></li><li><a href="/article/taglib.html" class="sidebar-link">自制权限框架（一）jsp标签</a></li><li><a href="/article/annotation.html" class="sidebar-link">自制权限框架（二）注解</a></li><li><a href="/article/jmeter-1.html" class="sidebar-link">JMeter测试（一）</a></li><li><a href="/article/jmeter-2.html" class="sidebar-link">JMeter测试（二）</a></li><li><a href="/article/spring-security.html" class="sidebar-link">Spring Security实现RBAC权限管理</a></li><li><a href="/article/nginx1.html" class="sidebar-link">Nginx简介（一）</a></li><li><a href="/article/nginx2.html" class="sidebar-link">Nginx简介（二）</a></li><li><a href="/article/string.html" class="sidebar-link">String是值传递还是引用传递</a></li><li><a href="/article/redis-cluster.html" aria-current="page" class="active sidebar-link">Redis集群</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/article/redis-cluster.html#redis-cluster-集群-的搭建-返回" class="sidebar-link">Redis Cluster（集群）的搭建 返回</a></li></ul></li><li><a href="/article/cas.html" class="sidebar-link">CAS与OAuth2的区别</a></li><li><a href="/article/spring-eureka-2.html" class="sidebar-link">Eureka服务注册与发现</a></li><li><a href="/article/spring-mobile.html" class="sidebar-link">Spring Mobile</a></li><li><a href="/article/es-1.html" class="sidebar-link">ES学习（一）ES的安装与启动</a></li><li><a href="/article/es-2.html" class="sidebar-link">ES学习（二）ES的集群原理</a></li><li><a href="/article/es-3.html" class="sidebar-link">ES学习（三）新建索引</a></li><li><a href="/article/es-4.html" class="sidebar-link">ES学习（四）字段类型（mapping）</a></li><li><a href="/article/es-5.html" class="sidebar-link">ES学习（五）动态映射</a></li><li><a href="/article/es-6.html" class="sidebar-link">ES学习（六）分析器</a></li><li><a href="/article/es-7.html" class="sidebar-link">ES学习（七）IK中文分词器</a></li><li><a href="/article/es-8.html" class="sidebar-link">ES学习（八）数据的增删改</a></li><li><a href="/article/es-9.html" class="sidebar-link">ES学习（九）搜索</a></li><li><a href="/article/es-10.html" class="sidebar-link">ES学习（十）聚合查询</a></li><li><a href="/article/es-11.html" class="sidebar-link">ES学习（十一）与SpringBoot结合</a></li><li><a href="/article/es-12.html" class="sidebar-link">ES学习（十二）高亮 和 搜索建议</a></li><li><a href="/article/es-13.html" class="sidebar-link">ES学习（十三）GEO位置搜索</a></li><li><a href="/article/rocketmq-1.html" class="sidebar-link">RocketMQ系列（一）基本概念</a></li><li><a href="/article/rocketmq-2.html" class="sidebar-link">RocketMQ系列（二）环境搭建</a></li><li><a href="/article/rocketmq-3.html" class="sidebar-link">RocketMQ系列（三）消息的生产与消费</a></li><li><a href="/article/rocketmq-4.html" class="sidebar-link">RocketMQ系列（四）顺序消费</a></li><li><a href="/article/rocketmq-5.html" class="sidebar-link">RocketMQ系列（五）广播与延迟消息</a></li><li><a href="/article/rocketmq-6.html" class="sidebar-link">RocketMQ系列（六）批量发送与过滤</a></li><li><a href="/article/rocketmq-7.html" class="sidebar-link">RocketMQ系列（七）事务消息</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="redis-cluster-集群-的搭建-返回"><a href="#redis-cluster-集群-的搭建-返回" class="header-anchor">#</a> Redis Cluster（集群）的搭建 <a href="/" title="首页" class="router-link-active">返回</a></h2> <h3 id="一、redis的下载、安装、启动-单实例"><a href="#一、redis的下载、安装、启动-单实例" class="header-anchor">#</a> 一、Redis的下载、安装、启动（单实例）</h3> <p>我们统一将Redis安装在/opt目录下，执行命令如下：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ cd /opt
+$ wget http://download.redis.io/releases/redis-4.0.9.tar.gz
+$ tar zxvf redis-4.0.9.tar.gz
+$ cd redis-4.0.9
+$ make
+</code></pre></div><p>安装完成，下面我们启动Redis服务：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ cd /opt/redis-4.0.9
+$ ./src/redis-server
+</code></pre></div><p>Redis启动成功，将采用Redis的默认配置。也可修改Redis根目录下的redis.conf文件，并在Redis启动时，指定配置文件，如下：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ ./src/redis-server redis.conf
+</code></pre></div><blockquote><p>注意，由于Redis的保护模式，只绑定了本机的127.0.0.1，从其他机器是不能访问的。所以我们需要添加本机的ip
+192.168.xxx.xxx。</p></blockquote> <h3 id="二、redis-cluster-集群-的搭建"><a href="#二、redis-cluster-集群-的搭建" class="header-anchor">#</a> 二、Redis Cluster（集群）的搭建</h3> <p>由于我们的机器有限，我们将采用一台机器多个端口的方式搭建我们的Redis集群。</p> <p>首先我们创建Redis的配置文件目录，如下：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ cd /opt
+$ mkdir redis-cluster
+</code></pre></div><p>并在redis-cluster目录下创建6个节点的配置文件。分别为：</p> <ul><li>redis-7000.conf</li> <li>redis-7001.conf</li> <li>redis-7002.conf</li> <li>redis-7003.conf</li> <li>redis-7004.conf</li> <li>redis-7005.conf</li></ul> <p>后面的7000,7001等是redis启动的端口号。接下来编辑文件的内容：</p> <div class="language- extra-class"><pre class="language-text"><code>#该集群阶段的端口
+port 7000
+#为每一个集群节点指定一个pid_file
+pidfile /var/run/redis_7000.pid
+#在bind指令后添加本机的ip
+bind 127.0.0.1 149.28.37.147
+#找到Cluster配置的代码段，使得Redis支持集群
+cluster-enabled yes
+#每一个集群节点都有一个配置文件，这个文件是不能手动编辑的。确保每一个集群节点的配置文件不通
+cluster-config-file nodes-7000.conf
+#集群节点的超时时间，单位：ms，超时后集群会认为该节点失败
+cluster-node-timeout 5000
+#最后将appendonly改成yes
+appendonly yes
+</code></pre></div><p>这样一个节点的配置就完成，其他的5个节点也做同样的配置。并将6个节点的Redis实例启动：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7000.conf &amp;
+$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7001.conf &amp;
+$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7002.conf &amp;
+$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7003.conf &amp;
+$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7004.conf &amp;
+$ nohup /opt/redis-4.0.9/src/redis-server /opt/redis-cluster/redis-7005.conf &amp;
+</code></pre></div><p>使用这6个节点创建集群：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ /opt/redis-4.0.9/src/redis-trib.rb create --replicas 1 149.28.37.147:7000 149.28.37.147:7001 149.28.37.147:7002 149.28.37.147:7003 149.28.37.147:7004 149.28.37.147:7005
+</code></pre></div><blockquote><p>--replicas 1 表示我们希望为集群中的每个主节点创建一个从节点。</p></blockquote> <p>执行命令后会显示：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>&gt;&gt;&gt; Creating cluster
+&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...
+Using 3 masters:
+149.28.37.147:7000
+149.28.37.147:7001
+149.28.37.147:7002
+Adding replica 149.28.37.147:7004 to 149.28.37.147:7000
+Adding replica 149.28.37.147:7005 to 149.28.37.147:7001
+Adding replica 149.28.37.147:7003 to 149.28.37.147:7002
+&gt;&gt;&gt; Trying to optimize slaves allocation for anti-affinity
+[WARNING] Some slaves are in the same host as their master
+M: 65625091304b0fa2dd75a00f62b6aceac1701094 149.28.37.147:7000
+   slots:0-5460 (5461 slots) master
+M: 4da569bf8402e4f75ab6e0fe7076919c22e3f900 149.28.37.147:7001
+   slots:5461-10922 (5462 slots) master
+M: b977680e24f23f8fec96876d9014803ca752e2e2 149.28.37.147:7002
+   slots:10923-16383 (5461 slots) master
+S: 7183e47a64bca23157140229352455d1a1407dc2 149.28.37.147:7003
+   replicates b977680e24f23f8fec96876d9014803ca752e2e2
+S: b2f916a643fefef1d43dbd1ef5d22f72c0ee43d6 149.28.37.147:7004
+   replicates 65625091304b0fa2dd75a00f62b6aceac1701094
+S: e362d9aae5fe3e9c343d266a5ab952272e0e37b0 149.28.37.147:7005
+   replicates 4da569bf8402e4f75ab6e0fe7076919c22e3f900
+Can I set the above configuration? (type 'yes' to accept): 
+</code></pre></div><p>我们输入yes，回车：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>&gt;&gt;&gt; Nodes configuration updated
+&gt;&gt;&gt; Assign a different config epoch to each node
+&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join...
+&gt;&gt;&gt; Performing Cluster Check (using node 149.28.37.147:7000)
+M: 65625091304b0fa2dd75a00f62b6aceac1701094 149.28.37.147:7000
+   slots:0-5460 (5461 slots) master
+   1 additional replica(s)
+M: b977680e24f23f8fec96876d9014803ca752e2e2 149.28.37.147:7002
+   slots:10923-16383 (5461 slots) master
+   1 additional replica(s)
+S: e362d9aae5fe3e9c343d266a5ab952272e0e37b0 149.28.37.147:7005
+   slots: (0 slots) slave
+   replicates 4da569bf8402e4f75ab6e0fe7076919c22e3f900
+S: b2f916a643fefef1d43dbd1ef5d22f72c0ee43d6 149.28.37.147:7004
+   slots: (0 slots) slave
+   replicates 65625091304b0fa2dd75a00f62b6aceac1701094
+M: 4da569bf8402e4f75ab6e0fe7076919c22e3f900 149.28.37.147:7001
+   slots:5461-10922 (5462 slots) master
+   1 additional replica(s)
+S: 7183e47a64bca23157140229352455d1a1407dc2 149.28.37.147:7003
+   slots: (0 slots) slave
+   replicates b977680e24f23f8fec96876d9014803ca752e2e2
+[OK] All nodes agree about slots configuration.
+&gt;&gt;&gt; Check for open slots...
+&gt;&gt;&gt; Check slots coverage...
+[OK] All 16384 slots covered.
+</code></pre></div><p>集群搭建完毕。我们可以使用Spring-Boot非常方便的去访问Redis集群了。</p> <h3 id="三、ruby版本过低问题"><a href="#三、ruby版本过低问题" class="header-anchor">#</a> 三、Ruby版本过低问题</h3> <p>在使用redis-trib.rb时，需要先安装ruby：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ yum -y install ruby ruby-devel rubygems rpm-build
+$ gem install redis
+</code></pre></div><p>这是出现redis requires Ruby version &gt;= 2.2.2的报错，我们先安装rvm：</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>$ curl -L get.rvm.io | bash -s stable
+$ source /usr/local/rvm/scripts/rvm
+</code></pre></div><p>查看版本</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>rvm list known
+</code></pre></div><p>安装2.4.1版本</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>rvm install 2.4.1
+</code></pre></div><p>使用2.4.1版本</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>rvm use 2.4.1
+</code></pre></div><p>移除2.0.0版本</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>rvm remove 2.0.0
+</code></pre></div><p>查看当前ruby版本</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>ruby --version
+</code></pre></div><p>再安装redis，就可以了</p> <div class="language-jshelllanguage extra-class"><pre class="language-text"><code>gem install redis
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/article/string.html" class="prev">
+        String是值传递还是引用传递
+      </a></span> <span class="next"><a href="/article/cas.html">
+        CAS与OAuth2的区别
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.16ffb530.js" defer></script><script src="/assets/js/2.2805d820.js" defer></script><script src="/assets/js/66.2ebd0c92.js" defer></script>
+  </body>
+</html>

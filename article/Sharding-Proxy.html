@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sharding-Proxy的基本功能使用 | 牛初九博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="Java 技术 互联网 Spring Redis Mysql ">
+    <meta name="keywords" content="Java 技术 互联网 Spring SpringBoot SpringCloud Elastic Search MySQL MyCAT 分布式 集群">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.16ffb530.js" as="script"><link rel="preload" href="/assets/js/2.2805d820.js" as="script"><link rel="preload" href="/assets/js/33.9623bd00.js" as="script"><link rel="prefetch" href="/assets/js/10.7af0fa3b.js"><link rel="prefetch" href="/assets/js/11.bf2b4ef3.js"><link rel="prefetch" href="/assets/js/12.ffa316c1.js"><link rel="prefetch" href="/assets/js/13.7bf9e28b.js"><link rel="prefetch" href="/assets/js/14.fe8172bf.js"><link rel="prefetch" href="/assets/js/15.12492866.js"><link rel="prefetch" href="/assets/js/16.1e0b9828.js"><link rel="prefetch" href="/assets/js/17.5274e857.js"><link rel="prefetch" href="/assets/js/18.14c495e2.js"><link rel="prefetch" href="/assets/js/19.0065f7d5.js"><link rel="prefetch" href="/assets/js/20.15195b8f.js"><link rel="prefetch" href="/assets/js/21.a49d2486.js"><link rel="prefetch" href="/assets/js/22.7625f3ea.js"><link rel="prefetch" href="/assets/js/23.6829be75.js"><link rel="prefetch" href="/assets/js/24.d89bf6ba.js"><link rel="prefetch" href="/assets/js/25.f9c8e982.js"><link rel="prefetch" href="/assets/js/26.df00cb25.js"><link rel="prefetch" href="/assets/js/27.c2c39573.js"><link rel="prefetch" href="/assets/js/28.9d6955a7.js"><link rel="prefetch" href="/assets/js/29.793a5925.js"><link rel="prefetch" href="/assets/js/3.99170183.js"><link rel="prefetch" href="/assets/js/30.1d4eb018.js"><link rel="prefetch" href="/assets/js/31.c3635b83.js"><link rel="prefetch" href="/assets/js/32.39f76767.js"><link rel="prefetch" href="/assets/js/34.685b37ce.js"><link rel="prefetch" href="/assets/js/35.b6d262de.js"><link rel="prefetch" href="/assets/js/36.706cce0c.js"><link rel="prefetch" href="/assets/js/37.4b559cf9.js"><link rel="prefetch" href="/assets/js/38.8440f0a1.js"><link rel="prefetch" href="/assets/js/39.89829fe9.js"><link rel="prefetch" href="/assets/js/4.44e35b71.js"><link rel="prefetch" href="/assets/js/40.1eae592a.js"><link rel="prefetch" href="/assets/js/41.307e59e5.js"><link rel="prefetch" href="/assets/js/42.9c9598a9.js"><link rel="prefetch" href="/assets/js/43.6de9381c.js"><link rel="prefetch" href="/assets/js/44.0bda172b.js"><link rel="prefetch" href="/assets/js/45.7bd4678e.js"><link rel="prefetch" href="/assets/js/46.9601296c.js"><link rel="prefetch" href="/assets/js/47.8279d007.js"><link rel="prefetch" href="/assets/js/48.e8ae43c5.js"><link rel="prefetch" href="/assets/js/49.088eb890.js"><link rel="prefetch" href="/assets/js/5.7b7d1525.js"><link rel="prefetch" href="/assets/js/50.a104d084.js"><link rel="prefetch" href="/assets/js/51.0c101ee6.js"><link rel="prefetch" href="/assets/js/52.4269f250.js"><link rel="prefetch" href="/assets/js/53.1c55a938.js"><link rel="prefetch" href="/assets/js/54.dab6fc62.js"><link rel="prefetch" href="/assets/js/55.18a1bf4c.js"><link rel="prefetch" href="/assets/js/56.b2c0ee59.js"><link rel="prefetch" href="/assets/js/57.0a78afcc.js"><link rel="prefetch" href="/assets/js/58.d75522d5.js"><link rel="prefetch" href="/assets/js/59.2543ea7e.js"><link rel="prefetch" href="/assets/js/6.6d27b31c.js"><link rel="prefetch" href="/assets/js/60.16f65788.js"><link rel="prefetch" href="/assets/js/61.d6e2d8b6.js"><link rel="prefetch" href="/assets/js/62.183c4095.js"><link rel="prefetch" href="/assets/js/63.920617f0.js"><link rel="prefetch" href="/assets/js/64.5b2731e6.js"><link rel="prefetch" href="/assets/js/65.56420cc0.js"><link rel="prefetch" href="/assets/js/66.2ebd0c92.js"><link rel="prefetch" href="/assets/js/67.a414b285.js"><link rel="prefetch" href="/assets/js/68.989dacce.js"><link rel="prefetch" href="/assets/js/69.79a844b9.js"><link rel="prefetch" href="/assets/js/7.fee5c0b2.js"><link rel="prefetch" href="/assets/js/70.b789f7cb.js"><link rel="prefetch" href="/assets/js/71.90a71409.js"><link rel="prefetch" href="/assets/js/72.0dee4533.js"><link rel="prefetch" href="/assets/js/73.72b757a5.js"><link rel="prefetch" href="/assets/js/74.5cc6a8e7.js"><link rel="prefetch" href="/assets/js/75.a3efa729.js"><link rel="prefetch" href="/assets/js/76.ee52fbb0.js"><link rel="prefetch" href="/assets/js/77.2c257317.js"><link rel="prefetch" href="/assets/js/78.831d9b7b.js"><link rel="prefetch" href="/assets/js/79.7940520a.js"><link rel="prefetch" href="/assets/js/8.7f9f9c54.js"><link rel="prefetch" href="/assets/js/80.2f951622.js"><link rel="prefetch" href="/assets/js/81.fb674315.js"><link rel="prefetch" href="/assets/js/82.b9069b51.js"><link rel="prefetch" href="/assets/js/83.d718aedc.js"><link rel="prefetch" href="/assets/js/84.95180f04.js"><link rel="prefetch" href="/assets/js/85.3253eaff.js"><link rel="prefetch" href="/assets/js/86.3663d770.js"><link rel="prefetch" href="/assets/js/87.0c11349f.js"><link rel="prefetch" href="/assets/js/88.f5fac9dc.js"><link rel="prefetch" href="/assets/js/89.5e9c86e8.js"><link rel="prefetch" href="/assets/js/9.759c07c6.js"><link rel="prefetch" href="/assets/js/90.faeb161a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">牛初九博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/article/nacos.html" class="sidebar-link">注册中心Nacos集群搭建</a></li><li><a href="/article/nacos-1.html" class="sidebar-link">Nacos配置中心和服务的注册发现</a></li><li><a href="/article/login.html" class="sidebar-link">怎样实现登录？| Cookie or JWT</a></li><li><a href="/article/oauth.html" class="sidebar-link">OAuth授权</a></li><li><a href="/article/sso.html" class="sidebar-link">SSO单点登录流程</a></li><li><a href="/article/front-back.html" class="sidebar-link">前后端分离 | 登录状态</a></li><li><a href="/article/MySQL+Keepalived.html" class="sidebar-link">MySQL+Keepalived高可用</a></li><li><a href="/article/mysql-ms.html" class="sidebar-link">MySQL主从同步配置</a></li><li><a href="/article/mysql-huan.html" class="sidebar-link">MySQL中的幻读，你真的理解吗？</a></li><li><a href="/article/db-pool.html" class="sidebar-link">数据库连接池数量设置为多少？</a></li><li><a href="/article/CSRF.html" class="sidebar-link">CSRF的原理与防御</a></li><li><a href="/article/redis-lock.html" class="sidebar-link">Redis分布式锁</a></li><li><a href="/article/limit.html" class="sidebar-link">MySql分页查询慢</a></li><li><a href="/article/taglib.html" class="sidebar-link">自制权限框架（一）jsp标签</a></li><li><a href="/article/annotation.html" class="sidebar-link">自制权限框架（二）注解</a></li><li><a href="/article/jmeter-1.html" class="sidebar-link">JMeter测试（一）</a></li><li><a href="/article/jmeter-2.html" class="sidebar-link">JMeter测试（二）</a></li><li><a href="/article/spring-security.html" class="sidebar-link">Spring Security实现RBAC权限管理</a></li><li><a href="/article/nginx1.html" class="sidebar-link">Nginx简介（一）</a></li><li><a href="/article/nginx2.html" class="sidebar-link">Nginx简介（二）</a></li><li><a href="/article/string.html" class="sidebar-link">String是值传递还是引用传递</a></li><li><a href="/article/redis-cluster.html" class="sidebar-link">Redis集群</a></li><li><a href="/article/cas.html" class="sidebar-link">CAS与OAuth2的区别</a></li><li><a href="/article/spring-eureka-2.html" class="sidebar-link">Eureka服务注册与发现</a></li><li><a href="/article/spring-mobile.html" class="sidebar-link">Spring Mobile</a></li><li><a href="/article/es-1.html" class="sidebar-link">ES学习（一）ES的安装与启动</a></li><li><a href="/article/es-2.html" class="sidebar-link">ES学习（二）ES的集群原理</a></li><li><a href="/article/es-3.html" class="sidebar-link">ES学习（三）新建索引</a></li><li><a href="/article/es-4.html" class="sidebar-link">ES学习（四）字段类型（mapping）</a></li><li><a href="/article/es-5.html" class="sidebar-link">ES学习（五）动态映射</a></li><li><a href="/article/es-6.html" class="sidebar-link">ES学习（六）分析器</a></li><li><a href="/article/es-7.html" class="sidebar-link">ES学习（七）IK中文分词器</a></li><li><a href="/article/es-8.html" class="sidebar-link">ES学习（八）数据的增删改</a></li><li><a href="/article/es-9.html" class="sidebar-link">ES学习（九）搜索</a></li><li><a href="/article/es-10.html" class="sidebar-link">ES学习（十）聚合查询</a></li><li><a href="/article/es-11.html" class="sidebar-link">ES学习（十一）与SpringBoot结合</a></li><li><a href="/article/es-12.html" class="sidebar-link">ES学习（十二）高亮 和 搜索建议</a></li><li><a href="/article/es-13.html" class="sidebar-link">ES学习（十三）GEO位置搜索</a></li><li><a href="/article/rocketmq-1.html" class="sidebar-link">RocketMQ系列（一）基本概念</a></li><li><a href="/article/rocketmq-2.html" class="sidebar-link">RocketMQ系列（二）环境搭建</a></li><li><a href="/article/rocketmq-3.html" class="sidebar-link">RocketMQ系列（三）消息的生产与消费</a></li><li><a href="/article/rocketmq-4.html" class="sidebar-link">RocketMQ系列（四）顺序消费</a></li><li><a href="/article/rocketmq-5.html" class="sidebar-link">RocketMQ系列（五）广播与延迟消息</a></li><li><a href="/article/rocketmq-6.html" class="sidebar-link">RocketMQ系列（六）批量发送与过滤</a></li><li><a href="/article/rocketmq-7.html" class="sidebar-link">RocketMQ系列（七）事务消息</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="sharding-proxy的基本功能使用"><a href="#sharding-proxy的基本功能使用" class="header-anchor">#</a> Sharding-Proxy的基本功能使用</h1> <p>Sharding-Proxy是一个分布式数据库中间件，定位为透明化的数据库代理端。作为开发人员可以完全把它当成数据库，而它具体的分片规则在Sharding-Proxy中配置。它的整体架构图如下：</p> <p><img src="Sharding-Proxy.assets/image-20200720091424862.png" alt="image-20200720091424862"></p> <p>在架构图中，中间的蓝色方块就是我们的中间件Sharding-Proxy，下面连接的是数据库，我们可以配置每一个数据库的分片，还可以配置数据库的读写分离，影子库等等。上方则是我们的业务代码，他们统一连接Sharding-Proxy，就像直接连接数据库一样，而具体的数据插入哪一个数据库，则由Sharding-Proxy中的分片规则决定。再看看右侧，右侧是一些数据库的工具，比如：MySQL CLI，这是MySQL的命令行；Workbench是MySQL自己出的一个管理工具；还可以连接其他的工具，比如：Navicat，SQLYog等。最后再来看看左侧，是一个注册中心，目前支持最好的是Zookeeper，在注册中心中，我们可以统一配置分片规则，读写数据源等，而且是实时生效的，在管理多个Sharding-Proxy时，非常的方便。而官方也给我们提供了界面化的工具——ShardingSphere-UI，使用起来非常的方便。</p> <h2 id="sharding-proxy的安装"><a href="#sharding-proxy的安装" class="header-anchor">#</a> Sharding-Proxy的安装</h2> <p>我们可以在Sharding-Proxy官网上找的下载目录，再找到Sharding-Proxy的下载链接，下载最新版本的二进制包。然后把二进制包（tar.gz）上传到服务器的目录中，这个目录可以自定义，<code>/opt</code>或者<code>/usr/local</code>都可以，然后解压，命令如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">tar</span> -zxvf apache-shardingsphere-4.1.1-sharding-proxy-bin.tar.gz
+</code></pre></div><p>解压后，进入到sharding-proxy的conf目录，这个目录sharding-proxy的配置目录，我们所有的数据源、分片规则、读写分离等都在此目录下配置。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@centOS-1 conf<span class="token punctuation">]</span><span class="token comment"># ll</span>
+总用量 <span class="token number">28</span>
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">3019</span> <span class="token number">6</span>月   <span class="token number">4</span> <span class="token number">15</span>:24 config-encrypt.yaml
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">3633</span> <span class="token number">7</span>月   <span class="token number">7</span> <span class="token number">13</span>:51 config-master_slave.yaml
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">2938</span> <span class="token number">6</span>月   <span class="token number">4</span> <span class="token number">15</span>:24 config-shadow.yaml
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">5463</span> <span class="token number">7</span>月   <span class="token number">7</span> <span class="token number">14</span>:08 config-sharding.yaml
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">1322</span> <span class="token number">6</span>月   <span class="token number">4</span> <span class="token number">15</span>:24 logback.xml
+-rw-r--r--. <span class="token number">1</span> root root <span class="token number">2171</span> <span class="token number">7</span>月   <span class="token number">7</span> <span class="token number">15</span>:19 server.yaml
+
+</code></pre></div><ul><li>logback.xml是日志的配置。</li> <li>server.yaml是Sharding-Proxy的一些基础配置，比如：账号、密码、注册中心等。</li> <li>剩下的所有以config开头的yaml文件，都是一个逻辑数据源，我们可以看到最常见的两个config-sharding.yaml（分片的配置），config-master_slave.yaml（读写分离的配置）。注意，如果我们要配置分片+读写分离，要不要在两个配置文件中配置呢？不需要的，我们只需要在config-sharding.yaml中配置就可以了，如果要配置单独的读写分离，则需要按照config-master_slave.yaml配置。单独的读写分离和分片+读写分离在配置上，还是有一些区别的。</li></ul> <p>这些配置我们在后面会展开讲。Sharding-Proxy默认支持的数据库是PostgreSQL，而我们大多数都是使用的MySQL，在这里我们的数据库使用的是MySQL，我们要将mysql-connector-java.jar这个jar包放入lib目录，这里推荐使用5.x版本的jar包，如果使用8.x可能会有一些位置的错误。</p> <p>最后，我们执行bin目录下的start.sh就可以运行了。</p> <div class="language-shell extra-class"><pre class="language-shell"><code> ./bin/start.sh
+</code></pre></div><p>Sharding-Proxy默认的启动端口是3307，我们在连接的时候要格外注意一下。</p> <h2 id="server-yaml配置"><a href="#server-yaml配置" class="header-anchor">#</a> server.yaml配置</h2> <p>下面我们看看server.yaml文件中，都具体配置哪些内容，我们用vim打开文件，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> server.yaml
+</code></pre></div><p>文件的内容如下：</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment">#########################################################################################</span>
+<span class="token comment"># </span>
+<span class="token comment"># If you want to configure orchestration, authorization and proxy properties, please      refer to this file.</span>
+<span class="token comment"># </span>
+<span class="token comment">#########################################################################################</span>
+<span class="token comment">#</span>
+<span class="token comment">#orchestration:</span>
+<span class="token comment">#  orchestration_ds:</span>
+<span class="token comment">#    orchestrationType: registry_center,config_center</span>
+<span class="token comment">#    instanceType: zookeeper</span>
+<span class="token comment">#    serverLists: 192.168.73.131:2181</span>
+<span class="token comment">#    namespace: sharding-proxy</span>
+<span class="token comment">#    props:</span>
+<span class="token comment">#      overwrite: false</span>
+<span class="token comment">#      retryIntervalMilliseconds: 500</span>
+<span class="token comment">#      timeToLiveSeconds: 60</span>
+<span class="token comment">#      maxRetries: 3</span>
+<span class="token comment">#      operationTimeoutMilliseconds: 500</span>
+
+<span class="token key atrule">authentication</span><span class="token punctuation">:</span>
+  <span class="token key atrule">users</span><span class="token punctuation">:</span>
+    <span class="token key atrule">root</span><span class="token punctuation">:</span>
+      <span class="token key atrule">password</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">sharding</span><span class="token punctuation">:</span>
+      <span class="token key atrule">password</span><span class="token punctuation">:</span> sharding
+      <span class="token key atrule">authorizedSchemas</span><span class="token punctuation">:</span> sharding_db
+</code></pre></div><ul><li>其中，orchestration是连接zookeeper注册中心，这里我们暂时用不到，将其注释掉。</li> <li>authentication中，配置的是用户名和密码，以及授权的数据库，在这里，我们配置了两个用户，分别为：root/root和sharding/sharding，其中root默认授权所有的数据库，而sharding用户则授权sharding_db数据库。在这里的数据库（schema）是逻辑数据库，在config-*.yaml中配置的。</li></ul> <h2 id="config-sharding-yaml的配置"><a href="#config-sharding-yaml的配置" class="header-anchor">#</a> config-sharding.yaml的配置</h2> <p>这个文件是Sharding-Proxy的核心的配置，所有的分片规则都在这个文件中配置，让我们一起来看看吧，</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">schemaName</span><span class="token punctuation">:</span> sharding_db
+
+<span class="token key atrule">dataSources</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ds_1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.73.132<span class="token punctuation">:</span>3306/shard_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> imooc
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> Imooc@123456
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token key atrule">master_ds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.73.131<span class="token punctuation">:</span>3306/sharding_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> imooc
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> Imooc@123456
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token key atrule">slave_ds_0</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.73.130<span class="token punctuation">:</span>3306/sharding_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> imooc
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> Imooc@123456
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+
+</code></pre></div><ul><li>在这个配置文件中，总共分为3个部分，我们先看看前面2个部分。</li> <li>schemaName：是逻辑数据库的名称，这里我们叫做sharding_db。在server.yaml文件中，授权的schema就是这里的schemaName。</li> <li>第二部分是数据源，在dataSources里边，我们配置了3个数据源。分别是ds_1、master_ds和slave_ds_0。我们先来说一下数据库的规划吧，我们的数据将通过user_id进行数据库的分片，总共有2个分片，user_id尾数为奇数的将分配到ds_1的数据库中，user_id尾数为偶数的，将分配到ds_0中，但是我们的数据源中没有ds_0呀，ds_0将由master_ds和slave_ds_0组成一个读写分离数据源。</li></ul> <p>接下来再看看具体分片的配置，</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">shardingRule</span><span class="token punctuation">:</span>
+  <span class="token key atrule">masterSlaveRules</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ds_0</span><span class="token punctuation">:</span>
+      <span class="token key atrule">masterDataSourceName</span><span class="token punctuation">:</span> master_ds
+      <span class="token key atrule">slaveDataSourceNames</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> slave_ds_0
+  <span class="token key atrule">tables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">t_order</span><span class="token punctuation">:</span>
+      <span class="token key atrule">actualDataNodes</span><span class="token punctuation">:</span> ds_$<span class="token punctuation">{</span>0..1<span class="token punctuation">}</span>.t_order_$<span class="token punctuation">{</span>1..2<span class="token punctuation">}</span>
+      <span class="token key atrule">tableStrategy</span><span class="token punctuation">:</span>
+        <span class="token key atrule">inline</span><span class="token punctuation">:</span>
+          <span class="token key atrule">shardingColumn</span><span class="token punctuation">:</span> order_id
+          <span class="token key atrule">algorithmExpression</span><span class="token punctuation">:</span> t_order_$<span class="token punctuation">{</span>order_id % 2 + 1<span class="token punctuation">}</span>
+      <span class="token key atrule">keyGenerator</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> SNOWFLAKE
+        <span class="token key atrule">column</span><span class="token punctuation">:</span> order_id
+    <span class="token key atrule">t_order_item</span><span class="token punctuation">:</span>
+      <span class="token key atrule">actualDataNodes</span><span class="token punctuation">:</span> ds_$<span class="token punctuation">{</span>0..1<span class="token punctuation">}</span>.t_order_item_$<span class="token punctuation">{</span>1..2<span class="token punctuation">}</span>
+      <span class="token key atrule">tableStrategy</span><span class="token punctuation">:</span>
+        <span class="token key atrule">inline</span><span class="token punctuation">:</span>
+          <span class="token key atrule">shardingColumn</span><span class="token punctuation">:</span> order_id
+          <span class="token key atrule">algorithmExpression</span><span class="token punctuation">:</span> t_order_item_$<span class="token punctuation">{</span>order_id % 2 + 1<span class="token punctuation">}</span>
+      <span class="token key atrule">keyGenerator</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> SNOWFLAKE
+        <span class="token key atrule">column</span><span class="token punctuation">:</span> id
+  <span class="token key atrule">defaultDatabaseStrategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">inline</span><span class="token punctuation">:</span>
+      <span class="token key atrule">shardingColumn</span><span class="token punctuation">:</span> user_id
+      <span class="token key atrule">algorithmExpression</span><span class="token punctuation">:</span> ds_$<span class="token punctuation">{</span>user_id % 2<span class="token punctuation">}</span>
+  <span class="token key atrule">defaultTableStrategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">none</span><span class="token punctuation">:</span>
+  <span class="token key atrule">defaultDataSourceName</span><span class="token punctuation">:</span> ds_0
+
+</code></pre></div><ul><li>分片的配置都在shardingRule下。</li> <li>在这里我们要配置读写分离主从数据源，在这里我们配置的是分片+读写分离，和单纯的读写分离配置是不一样的。读写分离的配置在masterSlaveRules下，我们配置读写分离数据源ds_0，指定主库的数据源masterDataSourceName为master_ds，master_ds在上面的数据源中已经配置，而从数据源slaveDataSourceNames可以配置多个，也就是一主多从的配置，我们用数组的方式进行配置，- slave_ds_0指定从数据源为slave_ds_0，如果有多个从数据源，可以配置多个。</li> <li>我们先跳过tables的配置，往下看，defaultDataSourceName，默认数据源，我们指定ds_0。这个配置非常有用，在我们的项目中，并不是所有的表都要进行水平切分，只有数据量比较大的表才会用到水平切分，比如：订单表（t_order）和订单明细表（t_order_item）。而其他的表数据量没有那么大，单库单表就可以完全支撑，这些表没有分片规则，而我们指定了默认的数据源，当我们操作这些没有分片规则的表时，都统一使用默认的数据源。</li> <li>defaultTableStrategy，默认表的分片规则，这里我们配置的是none，没有。也就是说所有的分片表都要配置表的分片规则。</li> <li>defaultDatabaseStrategy，默认数据库的分片规则，这里我们配置它的规则为行内表达式，分片字段为user_id，规则为<code>ds_${user_id % 2}</code>，当user_id为偶数时，数据源为ds_0，也就是前面配置的读写分离数据源；而当user_id为奇数时，数据源为ds_1。如果我们的表的分片规则中，没有配置数据源的分片规则，将使用这个默认数据源的分片策略。</li> <li>最后再来看看tables的配置，这里配置的是分片表的规则，我们配置两个表，t_order和t_order_item。每个分片表都由3部分组成。首先，actualDataNodes，实际的数据节点，这个节点是在MySQL中真实存在的，以t_order的配置为例，ds_${0..1}.t_order_${1..2}，说明t_order的数据节点有4个，分表为ds_0.t_order_1、ds_0.t_order_2、ds_1.t_order_1和ds_1.t_order_2。再来看表的分片规则，tableStrategy，它的规则也是用行内表达式配置的，分片字段为order_id，规则为t_order_${order_id % 2 + 1}，当order_id为奇数时，数据会分配到表t_order_1中；当order_id为偶数时，会分配到表t_order_2中。</li></ul> <p>整个的分片策略就配置完了，决定每条数据的具体分片由两个字段决定，user_id决定数据分配到哪一个数据源中，order_id决定数据分配到哪一个表中。这就是分片+读写分离的配置，如果要进行更详细的配置，可以参考官方文档，这里不赘述了。</p> <h2 id="config-master-slave-yaml的配置"><a href="#config-master-slave-yaml的配置" class="header-anchor">#</a> config-master_slave.yaml的配置</h2> <p>如果我们只配置数据源的读写分离，而不进行分片配置，就需要参照这个配置文件进行配置了，虽然分片+读写分离的配置已经有了读写分离的配置，但是他俩之间还是有一些细微的区别的，我们来看看这个文件中的内容吧，</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">schemaName</span><span class="token punctuation">:</span> master_slave_db
+
+<span class="token key atrule">dataSources</span><span class="token punctuation">:</span>
+  <span class="token key atrule">master_ds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.73.131<span class="token punctuation">:</span>3306/sharding_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> imooc
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> Imooc@123456
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token key atrule">slave_ds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.73.130<span class="token punctuation">:</span>3306/sharding_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> imooc
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> Imooc@123456
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token key atrule">slave_ds_1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/demo_ds_slave_1<span class="token punctuation">?</span>serverTimezone=UTC<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span>
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+
+<span class="token key atrule">masterSlaveRule</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> ds_0
+  <span class="token key atrule">masterDataSourceName</span><span class="token punctuation">:</span> master_ds
+  <span class="token key atrule">slaveDataSourceNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> slave_ds
+    <span class="token punctuation">-</span> slave_ds_1
+
+</code></pre></div><ul><li>首先，我们还是定义逻辑数据库的名称，schemaName: master_slave_db，叫做master_slave_db。</li> <li>然后在dataSources中定义数据源，这些配置的结构是通用，和前面没有区别，我们配置了3个数据源，一主两从，master_ds（主）、slave_ds（从）和slave_ds_1（从）。</li> <li>最后就是主从的规则masterSlaveRule，在前面分片+读写分离的配置中，叫做masterSlaveRules，复数形式。说明在单独的读写分离配置中，只能配置一个主从数据源。主从数据源的名字叫做ds_0，主数据源masterDataSourceName是master_ds，从数据源slaveDataSourceNames配置了两个，slave_ds和slave_ds_1。</li></ul> <p>这里只是单纯的配置主从读写分离数据源，如果要配置分片+读写分离，请参照前面的配置。</p> <h2 id="config-shadow-yaml影子库配置"><a href="#config-shadow-yaml影子库配置" class="header-anchor">#</a> config-shadow.yaml影子库配置</h2> <p>在现在微服务盛行的情况下，系统被切分的很细，这对于测试，尤其是压测是非常难的，如果在测试环境部署一套和生产一模一样的环境，是非常浪费资源的。而如果只部署一两个服务，又不能进行全链路的整体压测。而我们的解决方案是在生产环境直接进行压测，得出的结果也是真实有效的。那么这些压测的数据怎么办，如果不做特殊的处理，就和生产的真实数据混在一起了。</p> <p>这里我们就需要配置影子数据库了，所有压测数据都会有一个特殊的标识，sharding-proxy根据这个特殊的标识，将压测的数据分配到影子库中，和生产的真实数据隔离开，我们看看具体怎么配置</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">schemaName</span><span class="token punctuation">:</span> sharding_db
+
+<span class="token key atrule">dataSources</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/demo_ds_0<span class="token punctuation">?</span>serverTimezone=UTC<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span>
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+  <span class="token key atrule">shadow_ds</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/demo_ds_1<span class="token punctuation">?</span>serverTimezone=UTC<span class="token important">&amp;useSSL=false</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span>
+    <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+    <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+    <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+    <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+
+<span class="token key atrule">shadowRule</span><span class="token punctuation">:</span>
+  <span class="token key atrule">column</span><span class="token punctuation">:</span> shadow
+  <span class="token key atrule">shadowMappings</span><span class="token punctuation">:</span>
+    <span class="token key atrule">ds</span><span class="token punctuation">:</span> shadow_ds
+</code></pre></div><ul><li>前面还是逻辑数据库的名称和数据源的配置。在数据源我们配置了两个，一个是真实的数据库ds，另一个是影子库shadow_ds，所有压测的数据都会分配的影子库中。</li> <li>shadowRule中配置影子库的规则，column，影子库字段标识，所有压测数据，在程序中，将此字段设置为true。shadowMappings是主库和影子库的映射关系，ds数据库的影子库是shadow_ds。</li></ul> <p>影子库的配置在我们压测中还是十分有用的，将测试数据和生产数据隔离开，不会影响到生产数据。</p> <h2 id="config-encrypt-yaml数据加密配置"><a href="#config-encrypt-yaml数据加密配置" class="header-anchor">#</a> config-encrypt.yaml数据加密配置</h2> <p>最后我们再看看数据加密的配置，一些用户的信息是不希望在数据库中以明文存在的，比如：用户的身份证号、银行卡号。但是，在使用的时候，我们还要把它解密回来。当然，我们可以在程序中，针对这些字段进行加解密，这里呢，我们看看Sharding-Proxy为我们提供的数据加密配置。我们看一下配置文件，</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">schemaName</span><span class="token punctuation">:</span> encrypt_db
+
+<span class="token key atrule">dataSource</span><span class="token punctuation">:</span>
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//127.0.0.1<span class="token punctuation">:</span>3306/demo_ds<span class="token punctuation">?</span>serverTimezone=UTC<span class="token important">&amp;useSSL=false</span>
+  <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+  <span class="token key atrule">password</span><span class="token punctuation">:</span>
+  <span class="token key atrule">connectionTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">30000</span>
+  <span class="token key atrule">idleTimeoutMilliseconds</span><span class="token punctuation">:</span> <span class="token number">60000</span>
+  <span class="token key atrule">maxLifetimeMilliseconds</span><span class="token punctuation">:</span> <span class="token number">1800000</span>
+  <span class="token key atrule">maxPoolSize</span><span class="token punctuation">:</span> <span class="token number">50</span>
+
+<span class="token key atrule">encryptRule</span><span class="token punctuation">:</span>
+  <span class="token key atrule">encryptors</span><span class="token punctuation">:</span>
+    <span class="token key atrule">encryptor_aes</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> aes
+      <span class="token key atrule">props</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">aes.key.value</span><span class="token punctuation">:</span> 123456abc
+  <span class="token key atrule">tables</span><span class="token punctuation">:</span>
+    <span class="token key atrule">t_card_no</span><span class="token punctuation">:</span>
+      <span class="token key atrule">columns</span><span class="token punctuation">:</span>
+        <span class="token key atrule">card_no</span><span class="token punctuation">:</span>
+          <span class="token key atrule">cipherColumn</span><span class="token punctuation">:</span> card_no_cipher
+          <span class="token key atrule">encryptor</span><span class="token punctuation">:</span> encryptor_aes
+
+</code></pre></div><ul><li>逻辑库与数据源的配置略过。</li> <li>在加密规则encryptRule中，我们先定义加密算法，encryptor_aes，它的类型是aes，key是123456abc，这个key我们可以修改，但是一旦用这个key产生数据，就不要再改了，如果改了，旧数据就不能正确的解密了。</li> <li>然后在tables中定义加密数据的表t_card_no，加密的列为card_no，这个列是逻辑列，在表中不是真实存在的，当你的sql中无论查询、插入，出现这个字段，都会进行加密处理。而cipherColumn是加密后存储数据的列，encryptor则是加密的规则。例如，我们执行insert into t_card_no (card_no) values ('123456')，card_no列在表t_card_no中并不存在，t_card_no中存在的是card_no_cipher列，我们执行成功后，card_no_cipher列存的是密文数据；当我们执行select card_no from t_card_no 时，虽然表t_card_no没有card_no 列，但是可以将card_no_cipher列解密，card_no 显示解密后的值。</li></ul> <p>数据加密在实际的应用中还是比较多的。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这一篇我们主要介绍了Sharding-Proxy的一些基本功能，下一篇将给大家shardingsphere-ui和注册中心的应用。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.16ffb530.js" defer></script><script src="/assets/js/2.2805d820.js" defer></script><script src="/assets/js/33.9623bd00.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySQL主主模式+Keepalived高可用 | 牛初九博客</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="Java 技术 互联网 Spring Redis Mysql ">
+    <meta name="keywords" content="Java 技术 互联网 Spring SpringBoot SpringCloud Elastic Search MySQL MyCAT 分布式 集群">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.16ffb530.js" as="script"><link rel="preload" href="/assets/js/2.2805d820.js" as="script"><link rel="preload" href="/assets/js/22.7625f3ea.js" as="script"><link rel="prefetch" href="/assets/js/10.7af0fa3b.js"><link rel="prefetch" href="/assets/js/11.bf2b4ef3.js"><link rel="prefetch" href="/assets/js/12.ffa316c1.js"><link rel="prefetch" href="/assets/js/13.7bf9e28b.js"><link rel="prefetch" href="/assets/js/14.fe8172bf.js"><link rel="prefetch" href="/assets/js/15.12492866.js"><link rel="prefetch" href="/assets/js/16.1e0b9828.js"><link rel="prefetch" href="/assets/js/17.5274e857.js"><link rel="prefetch" href="/assets/js/18.14c495e2.js"><link rel="prefetch" href="/assets/js/19.0065f7d5.js"><link rel="prefetch" href="/assets/js/20.15195b8f.js"><link rel="prefetch" href="/assets/js/21.a49d2486.js"><link rel="prefetch" href="/assets/js/23.6829be75.js"><link rel="prefetch" href="/assets/js/24.d89bf6ba.js"><link rel="prefetch" href="/assets/js/25.f9c8e982.js"><link rel="prefetch" href="/assets/js/26.df00cb25.js"><link rel="prefetch" href="/assets/js/27.c2c39573.js"><link rel="prefetch" href="/assets/js/28.9d6955a7.js"><link rel="prefetch" href="/assets/js/29.793a5925.js"><link rel="prefetch" href="/assets/js/3.99170183.js"><link rel="prefetch" href="/assets/js/30.1d4eb018.js"><link rel="prefetch" href="/assets/js/31.c3635b83.js"><link rel="prefetch" href="/assets/js/32.39f76767.js"><link rel="prefetch" href="/assets/js/33.9623bd00.js"><link rel="prefetch" href="/assets/js/34.685b37ce.js"><link rel="prefetch" href="/assets/js/35.b6d262de.js"><link rel="prefetch" href="/assets/js/36.706cce0c.js"><link rel="prefetch" href="/assets/js/37.4b559cf9.js"><link rel="prefetch" href="/assets/js/38.8440f0a1.js"><link rel="prefetch" href="/assets/js/39.89829fe9.js"><link rel="prefetch" href="/assets/js/4.44e35b71.js"><link rel="prefetch" href="/assets/js/40.1eae592a.js"><link rel="prefetch" href="/assets/js/41.307e59e5.js"><link rel="prefetch" href="/assets/js/42.9c9598a9.js"><link rel="prefetch" href="/assets/js/43.6de9381c.js"><link rel="prefetch" href="/assets/js/44.0bda172b.js"><link rel="prefetch" href="/assets/js/45.7bd4678e.js"><link rel="prefetch" href="/assets/js/46.9601296c.js"><link rel="prefetch" href="/assets/js/47.8279d007.js"><link rel="prefetch" href="/assets/js/48.e8ae43c5.js"><link rel="prefetch" href="/assets/js/49.088eb890.js"><link rel="prefetch" href="/assets/js/5.7b7d1525.js"><link rel="prefetch" href="/assets/js/50.a104d084.js"><link rel="prefetch" href="/assets/js/51.0c101ee6.js"><link rel="prefetch" href="/assets/js/52.4269f250.js"><link rel="prefetch" href="/assets/js/53.1c55a938.js"><link rel="prefetch" href="/assets/js/54.dab6fc62.js"><link rel="prefetch" href="/assets/js/55.18a1bf4c.js"><link rel="prefetch" href="/assets/js/56.b2c0ee59.js"><link rel="prefetch" href="/assets/js/57.0a78afcc.js"><link rel="prefetch" href="/assets/js/58.d75522d5.js"><link rel="prefetch" href="/assets/js/59.2543ea7e.js"><link rel="prefetch" href="/assets/js/6.6d27b31c.js"><link rel="prefetch" href="/assets/js/60.16f65788.js"><link rel="prefetch" href="/assets/js/61.d6e2d8b6.js"><link rel="prefetch" href="/assets/js/62.183c4095.js"><link rel="prefetch" href="/assets/js/63.920617f0.js"><link rel="prefetch" href="/assets/js/64.5b2731e6.js"><link rel="prefetch" href="/assets/js/65.56420cc0.js"><link rel="prefetch" href="/assets/js/66.2ebd0c92.js"><link rel="prefetch" href="/assets/js/67.a414b285.js"><link rel="prefetch" href="/assets/js/68.989dacce.js"><link rel="prefetch" href="/assets/js/69.79a844b9.js"><link rel="prefetch" href="/assets/js/7.fee5c0b2.js"><link rel="prefetch" href="/assets/js/70.b789f7cb.js"><link rel="prefetch" href="/assets/js/71.90a71409.js"><link rel="prefetch" href="/assets/js/72.0dee4533.js"><link rel="prefetch" href="/assets/js/73.72b757a5.js"><link rel="prefetch" href="/assets/js/74.5cc6a8e7.js"><link rel="prefetch" href="/assets/js/75.a3efa729.js"><link rel="prefetch" href="/assets/js/76.ee52fbb0.js"><link rel="prefetch" href="/assets/js/77.2c257317.js"><link rel="prefetch" href="/assets/js/78.831d9b7b.js"><link rel="prefetch" href="/assets/js/79.7940520a.js"><link rel="prefetch" href="/assets/js/8.7f9f9c54.js"><link rel="prefetch" href="/assets/js/80.2f951622.js"><link rel="prefetch" href="/assets/js/81.fb674315.js"><link rel="prefetch" href="/assets/js/82.b9069b51.js"><link rel="prefetch" href="/assets/js/83.d718aedc.js"><link rel="prefetch" href="/assets/js/84.95180f04.js"><link rel="prefetch" href="/assets/js/85.3253eaff.js"><link rel="prefetch" href="/assets/js/86.3663d770.js"><link rel="prefetch" href="/assets/js/87.0c11349f.js"><link rel="prefetch" href="/assets/js/88.f5fac9dc.js"><link rel="prefetch" href="/assets/js/89.5e9c86e8.js"><link rel="prefetch" href="/assets/js/9.759c07c6.js"><link rel="prefetch" href="/assets/js/90.faeb161a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">牛初九博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/gzh/gzh.html" class="nav-link">
+  公众号
+</a></div><div class="nav-item"><a href="/es/es.html" class="nav-link">
+  ES系列
+</a></div><div class="nav-item"><a href="/rocket/rocket.html" class="nav-link">
+  RocketMQ系列
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="慕课课程" class="dropdown-title"><span class="title">慕课课程</span> <span class="arrow down"></span></button> <button type="button" aria-label="慕课课程" class="mobile-dropdown-title"><span class="title">慕课课程</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://coding.imooc.com/class/341.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  精讲分布式定时任务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://class.imooc.com/sale/javaarchitect" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Java架构师直通车
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/article/nacos.html" class="sidebar-link">注册中心Nacos集群搭建</a></li><li><a href="/article/nacos-1.html" class="sidebar-link">Nacos配置中心和服务的注册发现</a></li><li><a href="/article/login.html" class="sidebar-link">怎样实现登录？| Cookie or JWT</a></li><li><a href="/article/oauth.html" class="sidebar-link">OAuth授权</a></li><li><a href="/article/sso.html" class="sidebar-link">SSO单点登录流程</a></li><li><a href="/article/front-back.html" class="sidebar-link">前后端分离 | 登录状态</a></li><li><a href="/article/MySQL+Keepalived.html" aria-current="page" class="active sidebar-link">MySQL+Keepalived高可用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/article/MySQL+Keepalived.html#整体架构" class="sidebar-link">整体架构</a></li><li class="sidebar-sub-header"><a href="/article/MySQL+Keepalived.html#mysql主主搭建" class="sidebar-link">MySQL主主搭建</a></li><li class="sidebar-sub-header"><a href="/article/MySQL+Keepalived.html#keepalived高可用" class="sidebar-link">Keepalived高可用</a></li><li class="sidebar-sub-header"><a href="/article/MySQL+Keepalived.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/article/mysql-ms.html" class="sidebar-link">MySQL主从同步配置</a></li><li><a href="/article/mysql-huan.html" class="sidebar-link">MySQL中的幻读，你真的理解吗？</a></li><li><a href="/article/db-pool.html" class="sidebar-link">数据库连接池数量设置为多少？</a></li><li><a href="/article/CSRF.html" class="sidebar-link">CSRF的原理与防御</a></li><li><a href="/article/redis-lock.html" class="sidebar-link">Redis分布式锁</a></li><li><a href="/article/limit.html" class="sidebar-link">MySql分页查询慢</a></li><li><a href="/article/taglib.html" class="sidebar-link">自制权限框架（一）jsp标签</a></li><li><a href="/article/annotation.html" class="sidebar-link">自制权限框架（二）注解</a></li><li><a href="/article/jmeter-1.html" class="sidebar-link">JMeter测试（一）</a></li><li><a href="/article/jmeter-2.html" class="sidebar-link">JMeter测试（二）</a></li><li><a href="/article/spring-security.html" class="sidebar-link">Spring Security实现RBAC权限管理</a></li><li><a href="/article/nginx1.html" class="sidebar-link">Nginx简介（一）</a></li><li><a href="/article/nginx2.html" class="sidebar-link">Nginx简介（二）</a></li><li><a href="/article/string.html" class="sidebar-link">String是值传递还是引用传递</a></li><li><a href="/article/redis-cluster.html" class="sidebar-link">Redis集群</a></li><li><a href="/article/cas.html" class="sidebar-link">CAS与OAuth2的区别</a></li><li><a href="/article/spring-eureka-2.html" class="sidebar-link">Eureka服务注册与发现</a></li><li><a href="/article/spring-mobile.html" class="sidebar-link">Spring Mobile</a></li><li><a href="/article/es-1.html" class="sidebar-link">ES学习（一）ES的安装与启动</a></li><li><a href="/article/es-2.html" class="sidebar-link">ES学习（二）ES的集群原理</a></li><li><a href="/article/es-3.html" class="sidebar-link">ES学习（三）新建索引</a></li><li><a href="/article/es-4.html" class="sidebar-link">ES学习（四）字段类型（mapping）</a></li><li><a href="/article/es-5.html" class="sidebar-link">ES学习（五）动态映射</a></li><li><a href="/article/es-6.html" class="sidebar-link">ES学习（六）分析器</a></li><li><a href="/article/es-7.html" class="sidebar-link">ES学习（七）IK中文分词器</a></li><li><a href="/article/es-8.html" class="sidebar-link">ES学习（八）数据的增删改</a></li><li><a href="/article/es-9.html" class="sidebar-link">ES学习（九）搜索</a></li><li><a href="/article/es-10.html" class="sidebar-link">ES学习（十）聚合查询</a></li><li><a href="/article/es-11.html" class="sidebar-link">ES学习（十一）与SpringBoot结合</a></li><li><a href="/article/es-12.html" class="sidebar-link">ES学习（十二）高亮 和 搜索建议</a></li><li><a href="/article/es-13.html" class="sidebar-link">ES学习（十三）GEO位置搜索</a></li><li><a href="/article/rocketmq-1.html" class="sidebar-link">RocketMQ系列（一）基本概念</a></li><li><a href="/article/rocketmq-2.html" class="sidebar-link">RocketMQ系列（二）环境搭建</a></li><li><a href="/article/rocketmq-3.html" class="sidebar-link">RocketMQ系列（三）消息的生产与消费</a></li><li><a href="/article/rocketmq-4.html" class="sidebar-link">RocketMQ系列（四）顺序消费</a></li><li><a href="/article/rocketmq-5.html" class="sidebar-link">RocketMQ系列（五）广播与延迟消息</a></li><li><a href="/article/rocketmq-6.html" class="sidebar-link">RocketMQ系列（六）批量发送与过滤</a></li><li><a href="/article/rocketmq-7.html" class="sidebar-link">RocketMQ系列（七）事务消息</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mysql主主模式-keepalived高可用"><a href="#mysql主主模式-keepalived高可用" class="header-anchor">#</a> MySQL主主模式+Keepalived高可用</h1> <p>今天闲来无事，打算搭建一个MySQL的高可用架构，采用的是MySQL的主主结构，再外加Keepalived，对外统一提供虚IP。先来说说背景吧，现在的项目为了高可用性，都是避免单节点的存在的，比如，我们的应用程序，都是部署多个节点，通过Nginx做负载均衡，某个节点出现问题，并不会影响整体应用。那么数据库层如何搭建高可用的架构呢？今天我们就来看看。</p> <h2 id="整体架构"><a href="#整体架构" class="header-anchor">#</a> 整体架构</h2> <p>MySQL采用主主结构，我们使用两台机器就够了，然后再这两台机器上再安装Keepalived，使用vrrp技术，虚拟出一个IP。两台机器如下：</p> <ul><li>192.168.73.141：MySQL（主1）、Keepalived（MASTER）</li> <li>192.168.73.142：MySQL（主2）、Keepalived（BACKUP）</li> <li>192.168.73.150：虚IP</li></ul> <p>整体架构图如下：</p> <p><img src="/assets/img/image-20201028104022181.e8106236.png" alt="image-20201028104022181"></p> <h2 id="mysql主主搭建"><a href="#mysql主主搭建" class="header-anchor">#</a> MySQL主主搭建</h2> <p>我们分别在两台机器上安装MySQL，使用yum方式安装，首先从MySQL官网下载rpm包，选择对应的系统，在这里，我们选择CentOS7的prm包，<code>mysql80-community-release-el7-3.noarch.rpm</code>。然后将rpm文件分别上传到两台机器上，接下来我们就是用yum来安装MySQL。</p> <p>在192.168.73.141（主1）执行如下命令，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 使用yum安装rpm包</span>
+yum <span class="token function">install</span> mysql80-community-release-el7-3.noarch.rpm
+
+<span class="token comment"># 安装MySQL社区版 时间较长 耐心等待</span>
+yum <span class="token function">install</span> mysql-community-server
+
+<span class="token comment">#启动MySQL服务</span>
+<span class="token function">service</span> mysqld start
+</code></pre></div><p>到这里，MySQL就安装完成，并且正常启动了。然后，我们用root账号登录MySQL，并创建一个可用的账号。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 从MySQL的日志中 找到root账号的临时密码</span>
+<span class="token function">grep</span> <span class="token string">'temporary password'</span> /var/log/mysqld.log
+
+<span class="token comment"># 使用root账号登录 输入临时密码 登录成功</span>
+mysql -uroot -p
+
+<span class="token comment"># 修改root账号的密码 使用MYSQL_NATIVE_PASSWORD的加密方式 这种方式大多数客户端都可以连接</span>
+ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY <span class="token string">'MyNewPass4!'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 创建MySQL账号</span>
+CREATE <span class="token environment constant">USER</span> <span class="token string">'USER'</span>@<span class="token string">'%'</span> IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY <span class="token string">'USER_PWD'</span><span class="token punctuation">;</span>
+<span class="token comment"># 对USER账号授权</span>
+GRANT ALL ON *.* TO <span class="token string">'USER'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+<span class="token comment"># 刷新权限</span>
+FLUSH PRIVILEGES<span class="token punctuation">;</span>
+</code></pre></div><p>好了，到这里，在192.168.73.141上安装MySQL成功，并且创建了USER账户，我们可以使用NAVICAT等客户端连接。</p> <p><strong>在192.168.73.142（主2）上也执行上面的命令</strong>，这样我们在两台机器上都安装了MySQL。接下来，我们就要配置MySQL的主主结构了。</p> <p>首先，我们修改192.168.73.141（主1）上的my.cnf文件。</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> /etc/my.cnf
+
+
+<span class="token assign-left variable">datadir</span><span class="token operator">=</span>/var/lib/mysql
+<span class="token assign-left variable">socket</span><span class="token operator">=</span>/var/lib/mysql/mysql.sock
+
+log-error<span class="token operator">=</span>/var/log/mysqld.log
+pid-file<span class="token operator">=</span>/var/run/mysqld/mysqld.pid
+
+<span class="token comment"># 配置server-id 每个MySQL实例的server-id都不能相同</span>
+server-id<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># MySQL的日志文件的名字</span>
+log-bin<span class="token operator">=</span>mysql_master
+<span class="token comment"># 作为从库时 更新操作是否写入日志 on：写入  其他数据库以此数据库做主库时才能进行同步</span>
+log-slave-updates<span class="token operator">=</span>on
+
+<span class="token comment"># MySQL系统库的数据不需要同步 我们这里写了3个  更加保险</span>
+<span class="token comment"># 同步数据时忽略一下数据库 但是必须在使用use db的情况下才会忽略；如果没有使用use db 比如create user  数据还是会同步的</span>
+replicate-ignore-db<span class="token operator">=</span>information_schema
+replicate-ignore-db<span class="token operator">=</span>mysql
+replicate-ignore-db<span class="token operator">=</span>performance_schema
+replicate-ignore-db<span class="token operator">=</span>sys
+<span class="token comment"># 使用通配符忽略MySQL系统库的表  这样在create user时也不会进行同步了</span>
+<span class="token assign-left variable">replicate_wild_ignore_table</span><span class="token operator">=</span>information_schema.%
+<span class="token assign-left variable">replicate_wild_ignore_table</span><span class="token operator">=</span>mysql.%
+<span class="token assign-left variable">replicate_wild_ignore_table</span><span class="token operator">=</span>performance_schema.%
+<span class="token assign-left variable">replicate_wild_ignore_table</span><span class="token operator">=</span>sys.%
+<span class="token comment"># MySQL系统库的日志不计入binlog 这样更加保险了</span>
+binlog-ignore-db<span class="token operator">=</span>information_schema
+binlog-ignore-db<span class="token operator">=</span>mysql
+binlog-ignore-db<span class="token operator">=</span>performance_schema
+binlog-ignore-db<span class="token operator">=</span>sys
+</code></pre></div><p>在192.168.73.142（主2）上也修改my.cnf文件，我们直接复制过去，只需要修改其中的两个地方，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 配置server-id=2</span>
+server-id<span class="token operator">=</span><span class="token number">2</span>
+<span class="token comment"># MySQL的日志文件的名字 不改名字也可以 这里主要为了区分</span>
+log-bin<span class="token operator">=</span>mysql_slave
+</code></pre></div><p>配置文件都已经修改好了，我们分别在192.168.73.141（主1）和192.168.73.142（主2）上重启MySQL服务，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">service</span> mysqld restart
+</code></pre></div><p>下面我们就要配置主从了，其实主主模式就是配置两个主从，先配置192.168.73.141（主1）-&gt;192.168.73.142（主2）的主从，然后再反过来配置192.168.73.142（主2）-&gt;192.168.73.141（主1）的主从，这样主主的模式就配置好了。</p> <p>我们先来配置<strong>192.168.73.141（主1）-&gt;192.168.73.142（主2）的主从</strong></p> <p>先登录192.168.73.141（主1）的数据库，并执行如下命令：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 创建备份的账号 使用MYSQL_NATIVE_PASSWORD的方式加密</span>
+mysql<span class="token operator">&gt;</span> CREATE <span class="token environment constant">USER</span> <span class="token string">'repl_master'</span>@<span class="token string">'%'</span> IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY <span class="token string">'password'</span><span class="token punctuation">;</span>
+<span class="token comment"># 对repl_master授予备份的权限</span>
+mysql<span class="token operator">&gt;</span> GRANT REPLICATION SLAVE ON *.* TO <span class="token string">'repl_master'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+<span class="token comment"># 刷新权限</span>
+mysql<span class="token operator">&gt;</span> FLUSH PRIVILEGES<span class="token punctuation">;</span>
+
+<span class="token comment"># 查看MySQL主节点的状态</span>
+mysql<span class="token operator">&gt;</span> SHOW MASTER STATUS<span class="token punctuation">;</span>
+
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token operator">|</span> File               <span class="token operator">|</span> Position <span class="token operator">|</span> Binlog_Do_DB <span class="token operator">|</span> Binlog_Ignore_DB                             <span class="token operator">|</span> Executed_Gtid_Set <span class="token operator">|</span>
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token operator">|</span> mysql_master.000001 <span class="token operator">|</span>     <span class="token number">516</span> <span class="token operator">|</span>              <span class="token operator">|</span> information_schema,mysql,performance_schema,sys <span class="token operator">|</span>                  <span class="token operator">|</span>
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin class-name">set</span>
+</code></pre></div><p>我们要记住binlog文件的名字，也就是mysql_master.000001，和位置，也就是516。</p> <p>然后，我们再登录到192.168.73.142（主2）的数据库，执行如下命令：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>mysql<span class="token operator">&gt;</span> CHANGE MASTER TO
+		   <span class="token comment"># MySQL主的IP</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_HOST</span><span class="token operator">=</span><span class="token string">'192.168.73.141'</span>,
+           <span class="token comment"># MySQL主的端口</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_PORT</span><span class="token operator">=</span><span class="token number">3306</span>
+           <span class="token comment"># MySQL主的备份账号</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_USER</span><span class="token operator">=</span><span class="token string">'repl_master'</span>,
+           <span class="token comment"># MySQL主的备份账号密码</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_PASSWORD</span><span class="token operator">=</span><span class="token string">'password'</span>,
+           <span class="token comment"># 日志文件 通过show master status得到的</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_LOG_FILE</span><span class="token operator">=</span><span class="token string">'mysql_master.000001'</span>,
+           <span class="token comment"># 日志文件位置 通过show master status得到的</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_LOG_POS</span><span class="token operator">=</span><span class="token number">516</span><span class="token punctuation">;</span>
+    
+<span class="token comment"># 开启从库</span>
+mysql<span class="token operator">&gt;</span> START SLAVE<span class="token punctuation">;</span>
+<span class="token comment"># 查看从库的状态</span>
+mysql<span class="token operator">&gt;</span> SHOW SLAVE STATUS<span class="token punctuation">;</span>
+</code></pre></div><p>这样，<strong>192.168.73.141（主1）-&gt;192.168.73.142（主2）的主从</strong>就搭建好了。然后，我们再反过来，搭建<strong>192.168.73.142（主2）-&gt;192.168.73.141（主1）的主从</strong>。</p> <p>先登录192.168.73.142（主2）的数据库，执行如下命令：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 创建备份的账号 使用MYSQL_NATIVE_PASSWORD的方式加密</span>
+mysql<span class="token operator">&gt;</span> CREATE <span class="token environment constant">USER</span> <span class="token string">'repl_slave'</span>@<span class="token string">'%'</span> IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY <span class="token string">'password'</span><span class="token punctuation">;</span>
+<span class="token comment"># 对repl_slave授予备份的权限</span>
+mysql<span class="token operator">&gt;</span> GRANT REPLICATION SLAVE ON *.* TO <span class="token string">'repl_slave'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span>
+<span class="token comment"># 刷新权限</span>
+mysql<span class="token operator">&gt;</span> FLUSH PRIVILEGES<span class="token punctuation">;</span>
+
+<span class="token comment"># 查看MySQL主节点的状态</span>
+mysql<span class="token operator">&gt;</span> SHOW MASTER STATUS<span class="token punctuation">;</span>
+
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token operator">|</span> File               <span class="token operator">|</span> Position <span class="token operator">|</span> Binlog_Do_DB <span class="token operator">|</span> Binlog_Ignore_DB                             <span class="token operator">|</span> Executed_Gtid_Set <span class="token operator">|</span>
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token operator">|</span> mysql_slave.000001 <span class="token operator">|</span>     <span class="token number">379</span> <span class="token operator">|</span>              <span class="token operator">|</span> information_schema,mysql,performance_schema,sys <span class="token operator">|</span>                  <span class="token operator">|</span>
++-------------------+---------+--------------+---------------------------------------------+------------------+
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin class-name">set</span>
+</code></pre></div><p>再登录到192.168.73.141（主1）的数据库，执行如下命令：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>mysql<span class="token operator">&gt;</span> CHANGE MASTER TO
+		   <span class="token comment"># MySQL主的IP</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_HOST</span><span class="token operator">=</span><span class="token string">'192.168.73.142'</span>,
+           <span class="token comment"># MySQL主的端口</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_PORT</span><span class="token operator">=</span><span class="token number">3306</span>
+           <span class="token comment"># MySQL主的备份账号</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_USER</span><span class="token operator">=</span><span class="token string">'repl_slave'</span>,
+           <span class="token comment"># MySQL主的备份账号密码</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_PASSWORD</span><span class="token operator">=</span><span class="token string">'password'</span>,
+           <span class="token comment"># 日志文件 通过show master status得到的</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_LOG_FILE</span><span class="token operator">=</span><span class="token string">'mysql_slave.000001'</span>,
+           <span class="token comment"># 日志文件位置 通过show master status得到的</span>
+    -<span class="token operator">&gt;</span>     <span class="token assign-left variable">MASTER_LOG_POS</span><span class="token operator">=</span><span class="token number">379</span><span class="token punctuation">;</span>
+    
+<span class="token comment"># 开启从库</span>
+mysql<span class="token operator">&gt;</span> START SLAVE<span class="token punctuation">;</span>
+<span class="token comment"># 查看从库的状态</span>
+mysql<span class="token operator">&gt;</span> SHOW SLAVE STATUS<span class="token punctuation">;</span>
+</code></pre></div><p>这样，<strong>192.168.73.142（主2）-&gt;192.168.73.141（主1）的主从</strong>也搭建好了。我们可以使用navicat分别连接192.168.73.141（主1）和192.168.73.142（主2），并执行建表、插入语句，验证一下主主同步是否成功，这里就不给大家演示了。</p> <h2 id="keepalived高可用"><a href="#keepalived高可用" class="header-anchor">#</a> Keepalived高可用</h2> <p>MySQL主主结构已经搭建好了，无论从哪个MySQL插入数据，都会同步到另外一个MySQL。虽然有了MySQL主主结构，但是不能保证高可用，比如，我们的应用程序连接的是192.168.73.141（主1），倘若192.168.73.141（主1）的MySQL挂掉了，我们的应用程序并不能自动的切换到192.168.73.142（主2），我们的应用程序也是不可用的状态。要做到这一点，就要借助于Keepalived。</p> <p>Keepalived有两个主要的功能：</p> <ul><li>提供虚IP，实现双机热备</li> <li>通过LVS，实现负载均衡</li></ul> <p>我们这里使用Keepalived，只需要使用其中的一个功能，提供虚IP，实现双机热备。我们需要在192.168.73.141（主1）和192.168.73.142（主2）上都安装Keepalived，执行命令如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> keepalived
+</code></pre></div><p>我们直接使用yum进行安装。安装完之后，编辑keepalived的配置文件，首先编辑192.168.73.141（主1）上的配置文件，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> /etc/keepalived/keepalived.conf
+
+<span class="token comment"># 全局配置 不用动  只需注释掉vrrp_strict</span>
+global_defs <span class="token punctuation">{</span>
+   notification_email <span class="token punctuation">{</span>
+     acassen@firewall.loc
+     failover@firewall.loc
+     sysadmin@firewall.loc
+   <span class="token punctuation">}</span>
+   notification_email_from Alexandre.Cassen@firewall.loc
+   smtp_server <span class="token number">192.168</span>.200.1
+   smtp_connect_timeout <span class="token number">30</span>
+   router_id LVS_DEVEL
+   vrrp_skip_check_adv_addr
+   <span class="token comment">#必须注释掉 否则报错</span>
+   <span class="token comment">#vrrp_strict</span>
+   vrrp_garp_interval <span class="token number">0</span>
+   vrrp_gna_interval <span class="token number">0</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># 检查mysql服务是否存活的脚本</span>
+vrrp_script chk_mysql <span class="token punctuation">{</span>
+    script <span class="token string">&quot;/usr/bin/killall -0 mysqld&quot;</span>
+<span class="token punctuation">}</span>
+<span class="token comment"># vrrp配置虚IP</span>
+vrrp_instance VI_1 <span class="token punctuation">{</span>
+    <span class="token comment"># 状态：MASTER  另外一台机器为BACKUP</span>
+    state MASTER
+    <span class="token comment"># 绑定的网卡</span>
+    interface ens33
+    <span class="token comment"># 虚拟路由id  两台机器需保持一致</span>
+    virtual_router_id <span class="token number">51</span>
+    <span class="token comment"># 优先级 MASTER的值要大于BACKUP</span>
+    priority <span class="token number">100</span>
+    advert_int <span class="token number">1</span>
+    authentication <span class="token punctuation">{</span>
+        auth_type PASS
+        auth_pass <span class="token number">1111</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment"># 虚拟IP地址 两台keepalived需要一致</span>
+    virtual_ipaddress <span class="token punctuation">{</span>
+        <span class="token number">192.168</span>.73.150
+    <span class="token punctuation">}</span>
+    <span class="token comment"># 检查脚本 vrrp_script的名字</span>
+    track_script <span class="token punctuation">{</span>
+        chk_mysql
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">###后边的virtual_server全部注释掉 它是和LVS做负载均衡用的  这里用不到</span>
+<span class="token comment">###</span>
+</code></pre></div><p>再编辑192.168.73.142（主2）上的配置文件，只需要将state MASTER改为state BACKUP，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>state BACKUP
+</code></pre></div><p>通过keepalived的配置，我们对外提供192.168.73.150的IP，这个IP实际指向是192.168.73.141（主1），因为它的state是MASTER。当keepalived检测到192.168.73.141（主1）上的MySQL不可用时，会自动切换到192.168.73.142（主2）。对于外部用户是无感知的，因为外部统一使用的是192.168.73.150。</p> <p>我们再来看看检测的脚本<code>/usr/bin/killall -0 mysqld</code>，killall命令不是系统自带的，需要安装，我们还是使用yum来安装，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 先查询一下killall</span>
+yum search <span class="token function">killall</span>
+
+<span class="token comment">#找到了psmisc.x86_64</span>
+Loading mirror speeds from cached hostfile
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>Matched: <span class="token function">killall</span> <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+psmisc.x86_64 <span class="token builtin class-name">:</span> Utilities <span class="token keyword">for</span> managing processes on your system
+
+<span class="token comment"># 安装psmisc</span>
+yum <span class="token function">install</span> psmisc
+</code></pre></div><p>这样我们就可以使用killall命令了。<code>killall -0</code>并不是杀掉进程，而是检查进程是否存在，如果存在则返回0，如果不存在则返回1。当返回1时，keepalived就会切换主备状态。</p> <p>好了，killall也介绍完了，我们在两台机器上启动keepalived，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 启动keepalived</span>
+<span class="token function">service</span> keepalived start
+</code></pre></div><p>然后，我们在192.168.73.141（主1）上查看一下IP是否有192.168.73.150，如下：</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">ip</span> addr
+
+<span class="token number">1</span>: lo: <span class="token operator">&lt;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="token number">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope <span class="token function">host</span> 
+       valid_lft forever preferred_lft forever
+<span class="token number">2</span>: ens33: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc pfifo_fast state UP group default qlen <span class="token number">1000</span>
+    link/ether 00:0c:29:57:8c:cd brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">192.168</span>.73.141/24 brd <span class="token number">192.168</span>.73.255 scope global noprefixroute ens33
+       valid_lft forever preferred_lft forever
+    inet <span class="token number">192.168</span>.73.150/32 scope global ens33  <span class="token comment"># 我们看到了192.168.73.150</span>
+       valid_lft forever preferred_lft forever
+    inet6 fe80::720b:92b0:7f78:57ed/64 scope <span class="token function">link</span> noprefixroute 
+       valid_lft forever preferred_lft forever
+</code></pre></div><p>到这里，keepalived的配置就完成了，我们通过navicat连接192.168.73.150，可以正常的连接数据库，实际上它连接的是192.168.73.141的数据库，我们操作数据库也是正常的。</p> <p>然后，我们停掉192.168.73.141（主1）上的MySQL服务，</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">service</span> mysqld stop
+
+<span class="token comment"># 再用 ip addr查看一下</span>
+<span class="token function">ip</span> addr
+<span class="token number">1</span>: lo: <span class="token operator">&lt;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="token number">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope <span class="token function">host</span> 
+       valid_lft forever preferred_lft forever
+<span class="token number">2</span>: ens33: <span class="token operator">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">&gt;</span> mtu <span class="token number">1500</span> qdisc pfifo_fast state UP group default qlen <span class="token number">1000</span>
+    link/ether 00:0c:29:57:8c:cd brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">192.168</span>.73.141/24 brd <span class="token number">192.168</span>.73.255 scope global noprefixroute ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::720b:92b0:7f78:57ed/64 scope <span class="token function">link</span> noprefixroute 
+       valid_lft forever preferred_lft forever
+</code></pre></div><p>192.168.73.150的IP找不到了，我们再去192.168.73.142（主2）上去查看，可以发现192.168.73.150的IP。我们在navicat上操作数据库，是可以正常使用的。但这时实际连接的是192.168.73.142（主2）的数据库。我们是没有感知的。如果我们把192.168.73.141（主1）上的mysql服务再启动起来，192.168.73.150还会切换到192.168.73.141（主1）。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>我们通过MySQL主主结构+keepalived双机热备实现了MySQL的高可用，我们应用程序可以连接虚IP，具体连接的实际MySQL，不需要我们关心。如果我们再做读写分离的话，可以将MySQL（主2）作为主，配置数据库的主从关系。这时，虚IP连接的是MySQL（主1），MySQL（主1）将数据同步到MySQL（主2），然后MySQL（主2）再将数据同步到其他从库。如果MySQL（主1）挂掉，虚IP指向MySQL（主2）,MySQL（主2）再将数据同步到其他从库。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/article/front-back.html" class="prev">
+        前后端分离 | 登录状态
+      </a></span> <span class="next"><a href="/article/mysql-ms.html">
+        MySQL主从同步配置
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.16ffb530.js" defer></script><script src="/assets/js/2.2805d820.js" defer></script><script src="/assets/js/22.7625f3ea.js" defer></script>
+  </body>
+</html>
